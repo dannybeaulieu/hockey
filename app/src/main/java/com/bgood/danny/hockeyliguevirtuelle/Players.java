@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.*;
 
 
 public class Players extends Activity {
@@ -30,6 +31,8 @@ public class Players extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_update) {
             WebContentProvider.UpdateContent(getBaseContext());
+			TextView content = (TextView)findViewById(R.id.activityplayersContent);
+		    content.setText(WebContentProvider.getContent(getBaseContext()));
         }
         return super.onOptionsItemSelected(item);
     }
