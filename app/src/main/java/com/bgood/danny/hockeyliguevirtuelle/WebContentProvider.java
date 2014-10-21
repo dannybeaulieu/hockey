@@ -14,13 +14,18 @@ import org.jsoup.*;
  */
 public class WebContentProvider {
 	
-	private static Document doc = null;
-	private static String baseUrl = "http://www.lhvqr.com/saison%202014-2015";
+	private Document doc = null;
+	private String baseUrl = "http://www.lhvqr.com/saison%202014-2015";
+	private Context _context;
 	
-	private static Document getDocument(Context context) {
+	public WebContentProvider(Context context) {
+		_context = context;
+	}
+	
+	private Document getDocument() {
 		if (doc == null) {
 			try {
-				InputStream inputStream = context.openFileInput("ligue.txt");
+				InputStream inputStream = _context.openFileInput("ligue.txt");
 				doc = Jsoup.parse(inputStream, null, baseUrl);
 			}
 			catch (IOException e) {
@@ -30,7 +35,7 @@ public class WebContentProvider {
 		return doc;
 	}
 	
-    public static void UpdateContent(Context context) {
+    public void UpdateContent() {
         WebContentTask task = new WebContentTask();
         Thread t = new Thread(task);
         t.start();
@@ -39,10 +44,10 @@ public class WebContentProvider {
         }
 
         try {
-            FileOutputStream outputStream = context.openFileOutput("ligue.txt", Context.MODE_PRIVATE);
+            FileOutputStream outputStream = _context.openFileOutput("ligue.txt", Context.MODE_PRIVATE);
             outputStream.write(task.getContent().getBytes());
             outputStream.close();
-            Toast.makeText(context,"Data file updated.",
+            Toast.makeText(_context,"Data file updated.",
                     Toast.LENGTH_LONG).show();
         }
         catch (IOException e) {
@@ -50,14 +55,20 @@ public class WebContentProvider {
         }
     }
 	
-	public String[] GetTeams(Context context) {
+	public String[] GetTeams() {
 		String[] teams = new String[] {};
 		
 		
 		return teams;
 	}
 	
-	public static String getContent(Context context) {
-		return getDocument(context).html();
+	public String getContent() {
+		return getDocument().html();
+	}
+	
+	public String getDate() {
+		Element h4 = getDocument().getElementsByTag("h4").first();
+		
+		return h4.text();
 	}
 }

@@ -30,9 +30,12 @@ public class Players extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_update) {
-            WebContentProvider.UpdateContent(getBaseContext());
+			WebContentProvider provider = new WebContentProvider(getBaseContext());
+            provider.UpdateContent();
 			TextView content = (TextView)findViewById(R.id.activityplayersContent);
-		    content.setText(WebContentProvider.getContent(getBaseContext()));
+		    content.setText(provider.getContent());
+			TextView date = (TextView)findViewById(R.id.activityplayersDate);
+		    date.setText(provider.getDate());
         }
         return super.onOptionsItemSelected(item);
     }
