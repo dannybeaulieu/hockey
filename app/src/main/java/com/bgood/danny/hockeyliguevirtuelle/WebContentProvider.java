@@ -8,6 +8,8 @@ import java.io.IOException;
 import org.jsoup.nodes.*;
 import java.io.*;
 import org.jsoup.*;
+import org.jsoup.select.*;
+import java.util.*;
 
 /**
  * Created by Danny on 2014-10-15.
@@ -55,11 +57,22 @@ public class WebContentProvider {
         }
     }
 	
-	public String[] GetTeams() {
-		String[] teams = new String[] {};
+	public String[] getTeams() {
+		ArrayList<String> teams = new ArrayList<String>();
 		
+		Elements links = getDocument().getElementsByAttributeValueStarting("href", "#");
 		
-		return teams;
+		int index = 0;
+		ListIterator linkIterator = links.listIterator();
+	    while (linkIterator.hasNext()) {
+			String team = ((Element)linkIterator.next()).text();
+			
+			if (!team.contains("Page Top")) {
+				teams.add(team);
+			}
+		}
+			
+		return teams.toArray(new String[teams.size()]);
 	}
 	
 	public String getContent() {

@@ -36,6 +36,11 @@ public class Players extends Activity {
 		    content.setText(provider.getContent());
 			TextView date = (TextView)findViewById(R.id.activityplayersDate);
 		    date.setText(provider.getDate());
+			Spinner team = (Spinner)findViewById(R.id.activityplayersTeam);
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+																		android.R.layout.simple_spinner_item, provider.getTeams());
+			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			team.setAdapter(dataAdapter);
         }
         return super.onOptionsItemSelected(item);
     }
