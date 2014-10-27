@@ -34,12 +34,5 @@
 		android:id="@id/activityplayersTeam"
 		android:layout_below="@+id/activityplayersDate"/>
 
-	<ProgressBar
-		android:layout_height="wrap_content"
-		style="?android:attr/progressBarStyleLarge"
-		android:layout_width="wrap_content"
-		android:id="@+id/activityplayerProgress"
-		android:visibility="invisible"/>
-
 </RelativeLayout>
 

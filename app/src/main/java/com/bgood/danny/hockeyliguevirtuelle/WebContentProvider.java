@@ -10,6 +10,8 @@ import java.io.*;
 import org.jsoup.*;
 import org.jsoup.select.*;
 import java.util.*;
+import android.app.*;
+import android.widget.*;
 
 /**
  * Created by Danny on 2014-10-15.
@@ -19,9 +21,11 @@ public class WebContentProvider {
 	private Document doc = null;
 	private String baseUrl = "http://www.lhvqr.com/saison%202014-2015";
 	private Context _context;
+	private Global _global;
 	
-	public WebContentProvider(Context context) {
+	public WebContentProvider(Context context, Global global) {
 		_context = context;
+		_global = global;
 	}
 	
 	private Document getDocument() {
@@ -38,7 +42,9 @@ public class WebContentProvider {
 	}
 	
     public void UpdateContent() {
-        WebContentTask task = new WebContentTask();
+        WebContentTask task = new WebContentTask(_global);
+		//_global.getProgressDialog().show();
+		
         Thread t = new Thread(task);
         t.start();
 
@@ -54,6 +60,8 @@ public class WebContentProvider {
         }
         catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
+			Toast.makeText(_context,"Error - file write failed.",
+						   Toast.LENGTH_LONG).show();
         }
     }
 	
@@ -62,7 +70,6 @@ public class WebContentProvider {
 		
 		Elements links = getDocument().getElementsByAttributeValueStarting("href", "#");
 		
-		int index = 0;
 		ListIterator linkIterator = links.listIterator();
 	    while (linkIterator.hasNext()) {
 			String team = ((Element)linkIterator.next()).text();
@@ -83,5 +90,11 @@ public class WebContentProvider {
 		Element h4 = getDocument().getElementsByTag("h4").first();
 		
 		return h4.text();
+	}
+	
+	public boolean ligueFileExist() {
+		File ligueFile = new File(_context.getFilesDir() + "/ligue.txt");
+		
+		return ligueFile.exists();
 	}
 }

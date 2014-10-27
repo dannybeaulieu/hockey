@@ -5,6 +5,7 @@ import org.jsoup.*;
 import java.io.*;
 import org.jsoup.nodes.*;
 import android.content.*;
+import android.app.*;
 
 /**
  * Created by Danny on 2014-10-15.
@@ -12,6 +13,11 @@ import android.content.*;
 public class WebContentTask implements Runnable {
     private String urlPlayers = "http://www.lhvqr.com/saison%202014-2015/LHVQ2014-15-ProTeamRoster.html";
     private String content = "";
+	private Global _global;
+	
+	public WebContentTask(Global global) {
+		_global = global;
+	}
 
     public String getContent() {
         return content;
@@ -34,6 +40,7 @@ public class WebContentTask implements Runnable {
         {
             response_str.append(FormatException.FormatExceptionMessage(e));
         }
+		//_global.getProgressDialog().dismiss();
 
         content = response_str.toString();
     }
