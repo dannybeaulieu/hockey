@@ -7,15 +7,27 @@ import android.view.MenuItem;
 import android.widget.*;
 import android.content.*;
 import android.app.*;
+import android.os.*;
 
 
 public class Players extends Activity {
+	WebContentProvider provider = null;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_players);
-		//Global global = ((Global)getApplicationContext());
-		WebContentProvider provider = new WebContentProvider(getBaseContext(), null);
+		Global global = ((Global)getApplicationContext());
+		global.setPlayersActivity(Players.this);
+		
+		Handler mHandler = new Handler() {
+			@Override
+			public void handleMessage(Message message) {
+				bindData();
+			}
+		};
+		
+		provider = new WebContentProvider(getBaseContext(), global, mHandler);
 	
 		if (!provider.ligueFileExist()) {
 			provider.UpdateContent();
@@ -24,7 +36,6 @@ public class Players extends Activity {
 		}	
 		bindData();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -35,23 +46,13 @@ public class Players extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_update) {
-			WebContentProvider provider = new WebContentProvider(getBaseContext(), null);
+        if (item.getItemId() == R.id.action_update) {
             provider.UpdateContent();
-			bindData();
         }
         return super.onOptionsItemSelected(item);
     }
 	
 	private void bindData() {
-		WebContentProvider provider = new WebContentProvider(getBaseContext(), null);
-		
-		TextView content = (TextView)findViewById(R.id.activityplayersContent);
-		content.setText(provider.getContent());
 		TextView date = (TextView)findViewById(R.id.activityplayersDate);
 		date.setText(provider.getDate());
 		Spinner team = (Spinner)findViewById(R.id.activityplayersTeam);

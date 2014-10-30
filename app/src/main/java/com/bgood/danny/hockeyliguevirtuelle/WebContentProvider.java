@@ -12,6 +12,7 @@ import org.jsoup.select.*;
 import java.util.*;
 import android.app.*;
 import android.widget.*;
+import android.os.*;
 
 /**
  * Created by Danny on 2014-10-15.
@@ -20,12 +21,15 @@ public class WebContentProvider {
 	
 	private Document doc = null;
 	private String baseUrl = "http://www.lhvqr.com/saison%202014-2015";
+	private String urlPlayers = "http://www.lhvqr.com/saison%202014-2015/LHVQ2014-15-ProTeamRoster.html";
 	private Context _context;
 	private Global _global;
+	private Handler _handler;
 	
-	public WebContentProvider(Context context, Global global) {
+	public WebContentProvider(Context context, Global global, Handler handler) {
 		_context = context;
 		_global = global;
+		_handler = handler;
 	}
 	
 	private Document getDocument() {
@@ -42,27 +46,37 @@ public class WebContentProvider {
 	}
 	
     public void UpdateContent() {
-        WebContentTask task = new WebContentTask(_global);
-		//_global.getProgressDialog().show();
+		_global.getProgressDialog().show();
 		
-        Thread t = new Thread(task);
-        t.start();
+        Thread t = new Thread(new Runnable() 
+			{                   
+				public void run() 
+				{
+					StringBuilder response_str = new StringBuilder();
 
-        while (t.getState() != Thread.State.TERMINATED) {
-        }
-
-        try {
-            FileOutputStream outputStream = _context.openFileOutput("ligue.txt", Context.MODE_PRIVATE);
-            outputStream.write(task.getContent().getBytes());
-            outputStream.close();
-            Toast.makeText(_context,"Data file updated.",
-                    Toast.LENGTH_LONG).show();
-        }
-        catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-			Toast.makeText(_context,"Error - file write failed.",
-						   Toast.LENGTH_LONG).show();
-        }
+					try
+					{
+						Document doc = Jsoup.connect(urlPlayers).get();
+						response_str.append(doc.html());
+					
+						FileOutputStream outputStream = _context.openFileOutput("ligue.txt", Context.MODE_PRIVATE);
+						outputStream.write(response_str.toString().getBytes());
+						outputStream.close();
+					}
+					catch (IOException e)
+					{
+						response_str.append(FormatException.FormatExceptionMessage(e));
+					}
+					catch (Exception e)
+					{
+						response_str.append(FormatException.FormatExceptionMessage(e));
+					}
+					
+					_global.getProgressDialog().dismiss();
+					_handler.handleMessage(null);
+				}
+			});
+			t.start();
     }
 	
 	public String[] getTeams() {

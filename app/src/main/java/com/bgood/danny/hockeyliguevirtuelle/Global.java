@@ -3,9 +3,17 @@ import android.app.*;
 
 public class Global extends Application
 {
-	//private ProgressDialog progress = ProgressDialog.show(this, "Updating", "Please wait...", true, true);
+	private ProgressDialog progress = null;
+	private Players playersActivity = null;
 	
-	//public ProgressDialog getProgressDialog() {
-	//	return progress;
-	//}
+	public void setPlayersActivity(Players players) {
+		playersActivity = players;
+	}
+	
+	public ProgressDialog getProgressDialog() {
+		if (progress == null) {
+			progress = ProgressDialog.show(playersActivity, "Updating", "Please wait...", true, true);
+		}
+		return progress;
+	}
 }
