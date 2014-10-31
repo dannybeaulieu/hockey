@@ -32,8 +32,14 @@
 	<Spinner
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
-		android:id="@id/activityplayersTeam"
+		android:id="@+id/activityplayersSpinner1"
 		android:layout_below="@+id/activityplayersDate"/>
+
+	<ListView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:id="@+id/activityplayersList"
+		android:layout_below="@+id/activityplayersSpinner1"/>
 
 </RelativeLayout>
 

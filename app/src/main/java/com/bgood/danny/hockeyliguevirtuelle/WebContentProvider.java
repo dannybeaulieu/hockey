@@ -13,6 +13,7 @@ import java.util.*;
 import android.app.*;
 import android.widget.*;
 import android.os.*;
+import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 
 /**
  * Created by Danny on 2014-10-15.
@@ -73,27 +74,28 @@ public class WebContentProvider {
 					}
 					
 					_global.getProgressDialog().dismiss();
-					_handler.handleMessage(null);
+					_handler.sendMessage(_handler.obtainMessage());
 				}
 			});
 			t.start();
     }
 	
-	public String[] getTeams() {
-		ArrayList<String> teams = new ArrayList<String>();
+	public team[] getTeams() {
+		ArrayList<team> teams = new ArrayList<team>();
 		
 		Elements links = getDocument().getElementsByAttributeValueStarting("href", "#");
 		
 		ListIterator linkIterator = links.listIterator();
 	    while (linkIterator.hasNext()) {
-			String team = ((Element)linkIterator.next()).text();
+			Element teamElement = ((Element)linkIterator.next());
 			
-			if (!team.contains("Page Top")) {
-				teams.add(team);
+			if (!teamElement.text().contains("Page Top")) {
+				team newTeam = new team(teamElement.attr("href"), teamElement.text());
+				teams.add(newTeam);
 			}
 		}
 			
-		return teams.toArray(new String[teams.size()]);
+		return teams.toArray(new team[teams.size()]);
 	}
 	
 	public String getContent() {

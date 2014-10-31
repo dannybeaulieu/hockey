@@ -8,6 +8,7 @@ import android.widget.*;
 import android.content.*;
 import android.app.*;
 import android.os.*;
+import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 
 
 public class Players extends Activity {
@@ -55,10 +56,11 @@ public class Players extends Activity {
 	private void bindData() {
 		TextView date = (TextView)findViewById(R.id.activityplayersDate);
 		date.setText(provider.getDate());
-		Spinner team = (Spinner)findViewById(R.id.activityplayersTeam);
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-																	android.R.layout.simple_spinner_item, provider.getTeams());
+		Spinner teamSpinner = (Spinner)findViewById(R.id.activityplayersSpinner1);
+		ArrayAdapter<team> dataAdapter = new ArrayAdapter<team>(this,
+																android.R.layout.simple_spinner_item, 
+																provider.getTeams());
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		team.setAdapter(dataAdapter);
+		teamSpinner.setAdapter(dataAdapter);
 	}
 }
