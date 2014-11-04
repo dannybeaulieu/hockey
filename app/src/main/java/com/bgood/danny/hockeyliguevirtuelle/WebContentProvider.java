@@ -108,6 +108,23 @@ public class WebContentProvider {
 		return h4.text();
 	}
 	
+	public TeamPlayer[] getTeamPlayers(String teamName) {
+		ArrayList<TeamPlayer> players = new ArrayList<TeamPlayer>();
+		
+		Element teamDiv = getDocument().getElementById("STHS_JS_Team_" + teamName);
+		String[] line = teamDiv.outerHtml().split("\n");
+		
+		for (int i=1; i <= line.length; i++) {
+			if (!line[i].startsWith("<")) {
+				TeamPlayer p = new TeamPlayer();
+				p.setName(line[i].substring(1,30).trim());
+				players.add(p);
+			}
+		}
+		
+		return players.toArray(new TeamPlayer[players.size()]);
+	}
+	
 	public boolean ligueFileExist() {
 		File ligueFile = new File(_context.getFilesDir() + "/ligue.txt");
 		

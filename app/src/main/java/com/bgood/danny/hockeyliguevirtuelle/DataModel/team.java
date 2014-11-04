@@ -1,9 +1,11 @@
 package com.bgood.danny.hockeyliguevirtuelle.DataModel;
+import java.util.*;
 
 public class team
 {
 	private String _name = "";
 	private String _key = "";
+	private ArrayList<TeamPlayer> players = new ArrayList<TeamPlayer>();
 	
 	public team(String key, String name) {
 		_key = key;
@@ -24,6 +26,10 @@ public class team
 	
 	public String getKey() {
 		return _key;
+	}
+	
+	public ArrayList<TeamPlayer> getPlayers() {
+		return players;
 	}
 
 	@Override

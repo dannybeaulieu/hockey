@@ -9,6 +9,8 @@ import android.content.*;
 import android.app.*;
 import android.os.*;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
+import android.view.*;
+import android.widget.AdapterView.*;
 
 
 public class Players extends Activity {
@@ -20,6 +22,28 @@ public class Players extends Activity {
         setContentView(R.layout.activity_players);
 		Global global = ((Global)getApplicationContext());
 		global.setPlayersActivity(Players.this);
+		
+		Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
+		
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
+					Toast.makeText(getBaseContext(), arg0.getSelectedItem().toString(),
+								   Toast.LENGTH_LONG).show();         
+								   
+					team selectedTeam = (team)(arg0.getSelectedItem());
+					ListView playerList = (ListView)findViewById(R.id.activityplayersList);
+					
+					ArrayAdapter<TeamPlayer> dataAdapter = new ArrayAdapter<TeamPlayer>(Players.this,
+																			android.R.layout.simple_list_item_1, 
+																			provider.getTeamPlayers(selectedTeam.getKey()));
+																			
+					dataAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+					playerList.setAdapter(dataAdapter);
+				}
+				public void onNothingSelected(AdapterView<?> arg0) {
+					// TODO Auto-generated method stub                  
+				}
+			});
 		
 		Handler mHandler = new Handler() {
 			@Override
