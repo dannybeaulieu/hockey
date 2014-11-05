@@ -90,7 +90,7 @@ public class WebContentProvider {
 			Element teamElement = ((Element)linkIterator.next());
 			
 			if (!teamElement.text().contains("Page Top")) {
-				team newTeam = new team(teamElement.attr("href"), teamElement.text());
+				team newTeam = new team(teamElement.attr("href").replace("#", ""), teamElement.text());
 				teams.add(newTeam);
 			}
 		}
@@ -114,10 +114,13 @@ public class WebContentProvider {
 		Element teamDiv = getDocument().getElementById("STHS_JS_Team_" + teamName);
 		String[] line = teamDiv.outerHtml().split("\n");
 		
-		for (int i=1; i <= line.length; i++) {
-			if (!line[i].startsWith("<")) {
+		for (int i=0; i < line.length; i++) {
+			if (!line[i].trim().startsWith("<") &&
+			    !line[i].trim().startsWith("Player") &&
+				!line[i].trim().startsWith("-") &&
+				!line[i].trim().startsWith("Goalie")) {
 				TeamPlayer p = new TeamPlayer();
-				p.setName(line[i].substring(1,30).trim());
+				p.setName(line[i].substring(0,30).trim());
 				players.add(p);
 			}
 		}
