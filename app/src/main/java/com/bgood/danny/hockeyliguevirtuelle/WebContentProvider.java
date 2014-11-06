@@ -113,15 +113,30 @@ public class WebContentProvider {
 		
 		Element teamDiv = getDocument().getElementById("STHS_JS_Team_" + teamName);
 		String[] line = teamDiv.outerHtml().split("\n");
+		boolean isGoalies = false;
 		
 		for (int i=0; i < line.length; i++) {
 			if (!line[i].trim().startsWith("<") &&
 			    !line[i].trim().startsWith("Player") &&
-				!line[i].trim().startsWith("-") &&
-				!line[i].trim().startsWith("Goalie")) {
+				!line[i].trim().startsWith("-")) {
+					
 				TeamPlayer p = new TeamPlayer();
-				p.setName(line[i].substring(0,30).trim());
-				players.add(p);
+				if (line[i].trim().startsWith("Goalie")) {
+					isGoalies = true;
+				}
+				else {
+					p.setName(line[i].substring(0,30).trim());
+					if (isGoalies) {
+						p.setPosition(line[i].substring(30,33).trim());
+						p.setOverall(line[i].substring(84,87).trim());
+					}
+					else
+					{
+						p.setPosition(line[i].substring(30,40).trim());
+						p.setOverall(line[i].substring(98,100).trim());
+					}
+					players.add(p);
+				}
 			}
 		}
 		
