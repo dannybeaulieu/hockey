@@ -11,6 +11,7 @@ import android.os.*;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import android.view.*;
 import android.widget.AdapterView.*;
+import java.io.*;
 
 
 public class Players extends Activity {
@@ -23,6 +24,14 @@ public class Players extends Activity {
 		Global global = ((Global)getApplicationContext());
 		global.setPlayersActivity(Players.this);
 		
+		Handler mHandler = new Handler() {
+			@Override
+			public void handleMessage(Message message) {
+				bindData();
+			}
+		};
+		
+		provider = new WebContentProvider(getBaseContext(), global, mHandler);
 		Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
 		
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -44,22 +53,13 @@ public class Players extends Activity {
 					// TODO Auto-generated method stub                  
 				}
 			});
-		
-		Handler mHandler = new Handler() {
-			@Override
-			public void handleMessage(Message message) {
-				bindData();
-			}
-		};
-		
-		provider = new WebContentProvider(getBaseContext(), global, mHandler);
 	
 		if (!provider.ligueFileExist()) {
 			provider.UpdateContent();
-			Toast updateMsg = Toast.makeText(getBaseContext(), "updating...", Toast.LENGTH_LONG);
-			updateMsg.show();
 		}	
-		bindData();
+		else {
+			bindData();
+		}
     }
 
     @Override
@@ -73,6 +73,11 @@ public class Players extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_update) {
             provider.UpdateContent();
+        }
+		if (item.getItemId() == R.id.action_reset) {
+            provider.ResetFile();
+			Toast.makeText(getBaseContext(), "File reset, please update.",
+						   Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Hockey - Ligue Virtuelle</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_update">Update</string>
+	<string name="action_reset">Reset</string>
 
 </resources>
