@@ -31,7 +31,11 @@ public class PlayerArrayAdapter extends ArrayAdapter<TeamPlayer> {
 		
 		TeamPlayer player = getItem(position);
 		textView.setText(player.toString());
- 		double con = Double.valueOf(player.getHealth());
+		
+ 		double con = 0;
+		if (player.getHealth().length() > 0) {
+			con = Double.valueOf(player.getHealth());
+		}
 		
 		if (con == 100.0) {
 			imageView.setImageResource(R.drawable.heart);

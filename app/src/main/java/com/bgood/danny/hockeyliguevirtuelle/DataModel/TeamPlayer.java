@@ -41,6 +41,6 @@ public class TeamPlayer
 	@Override
 	public String toString()
 	{
-		return _name + " - " + _position + "\nOv: " + getOverall();
+		return _name + " - " + _position + " - " + _health + "%" + "\nOv: " + getOverall();
 	}
 }

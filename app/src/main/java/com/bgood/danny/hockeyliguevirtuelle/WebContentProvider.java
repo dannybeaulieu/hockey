@@ -130,13 +130,13 @@ public class WebContentProvider {
 					if (isGoalies) {
 						p.setPosition(line[i].substring(30,33).trim());
 						p.setOverall(line[i].substring(84,87).trim());
-						p.setHealth(line[i].substring(41,47).trim().replace(",","."));
+						p.setHealth(line[i].substring(33,39).trim().replace(",","."));
 					}
 					else
 					{
 						p.setPosition(line[i].substring(30,40).trim());
 						p.setOverall(line[i].substring(98,100).trim());
-						p.setHealth(line[i].substring(34,40).trim().replace(",","."));
+						p.setHealth(line[i].substring(40,46).trim().replace(",","."));
 					}
 					players.add(p);
 				}
