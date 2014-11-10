@@ -51,13 +51,14 @@ public class WebContentProvider {
 		
         Thread t = new Thread(new Runnable() 
 			{                   
-				public void run() 
+				public void run()
 				{
 					StringBuilder response_str = new StringBuilder();
 
 					try
 					{
 						Document doc = Jsoup.connect(urlPlayers).get();
+					
 						response_str.append(doc.html());
 					
 						FileOutputStream outputStream = _context.openFileOutput("ligue.txt", Context.MODE_PRIVATE);
@@ -65,13 +66,7 @@ public class WebContentProvider {
 						outputStream.close();
 					}
 					catch (IOException e)
-					{
-						response_str.append(FormatException.FormatExceptionMessage(e));
-					}
-					catch (Exception e)
-					{
-						response_str.append(FormatException.FormatExceptionMessage(e));
-					}
+					{}
 					
 					_global.getProgressDialog().dismiss();
 					_handler.sendMessage(_handler.obtainMessage());
@@ -81,6 +76,10 @@ public class WebContentProvider {
 			
 			doc = null;
     }
+	
+	public void ResetFile() {
+		_context.deleteFile("ligue.txt");
+	}
 	
 	public team[] getTeams() {
 		ArrayList<team> teams = new ArrayList<team>();
@@ -148,8 +147,7 @@ public class WebContentProvider {
 	}
 	
 	public boolean ligueFileExist() {
-		File ligueFile = new File(_context.getFilesDir() + "/ligue.txt");
-		
+		File ligueFile = _context.getFileStreamPath("ligue.txt");
 		return ligueFile.exists();
 	}
 }
