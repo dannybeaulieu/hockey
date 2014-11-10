@@ -78,6 +78,8 @@ public class WebContentProvider {
 				}
 			});
 			t.start();
+			
+			doc = null;
     }
 	
 	public team[] getTeams() {
@@ -108,7 +110,7 @@ public class WebContentProvider {
 		return h4.text();
 	}
 	
-	public TeamPlayer[] getTeamPlayers(String teamName) {
+	public ArrayList<TeamPlayer> getTeamPlayers(String teamName) {
 		ArrayList<TeamPlayer> players = new ArrayList<TeamPlayer>();
 		
 		Element teamDiv = getDocument().getElementById("STHS_JS_Team_" + teamName);
@@ -129,18 +131,20 @@ public class WebContentProvider {
 					if (isGoalies) {
 						p.setPosition(line[i].substring(30,33).trim());
 						p.setOverall(line[i].substring(84,87).trim());
+						p.setHealth(line[i].substring(41,47).trim().replace(",","."));
 					}
 					else
 					{
 						p.setPosition(line[i].substring(30,40).trim());
 						p.setOverall(line[i].substring(98,100).trim());
+						p.setHealth(line[i].substring(34,40).trim().replace(",","."));
 					}
 					players.add(p);
 				}
 			}
 		}
 		
-		return players.toArray(new TeamPlayer[players.size()]);
+		return players;
 	}
 	
 	public boolean ligueFileExist() {

@@ -11,6 +11,7 @@ import android.os.*;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import android.view.*;
 import android.widget.AdapterView.*;
+import com.bgood.danny.hockeyliguevirtuelle.Adaptor.*;
 
 
 public class Players extends Activity {
@@ -33,8 +34,7 @@ public class Players extends Activity {
 					team selectedTeam = (team)(arg0.getSelectedItem());
 					ListView playerList = (ListView)findViewById(R.id.activityplayersList);
 					
-					ArrayAdapter<TeamPlayer> dataAdapter = new ArrayAdapter<TeamPlayer>(Players.this,
-																			android.R.layout.simple_list_item_1, 
+					PlayerArrayAdapter dataAdapter = new PlayerArrayAdapter(Players.this, 
 																			provider.getTeamPlayers(selectedTeam.getKey()));
 																			
 					dataAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);

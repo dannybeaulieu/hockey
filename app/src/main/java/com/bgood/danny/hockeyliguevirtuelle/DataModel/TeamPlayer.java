@@ -5,6 +5,7 @@ public class TeamPlayer
 	private String _name;
 	private String _position;
 	private String _overall;
+	private String _health;
 	
 	public String getName() {
 		return _name;
@@ -18,6 +19,9 @@ public class TeamPlayer
 		return _overall;
 	}
 	
+	public String getHealth() {
+		return _health;
+	}
 	public void setName(String value) {
 		_name = value;
 	}
@@ -28,6 +32,10 @@ public class TeamPlayer
 	
 	public void setOverall(String value) {
 		_overall = value;
+	}
+	
+	public void setHealth(String value) {
+		_health = value;
 	}
 	
 	@Override
