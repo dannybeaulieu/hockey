@@ -11,8 +11,13 @@ import android.os.*;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import android.view.*;
 import android.widget.AdapterView.*;
+<<<<<<< HEAD
 import com.bgood.danny.hockeyliguevirtuelle.Adaptor.*;
 import java.io.*;
+=======
+import java.io.*;
+
+>>>>>>> branch 'master' of https://github.com/dannybeaulieu/hockey.git
 
 public class Players extends Activity {
 	WebContentProvider provider = null;
