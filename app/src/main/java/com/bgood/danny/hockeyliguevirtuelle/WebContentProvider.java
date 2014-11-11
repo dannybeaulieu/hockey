@@ -112,8 +112,13 @@ public class WebContentProvider {
 	public ArrayList<TeamPlayer> getTeamPlayers(String teamName) {
 		ArrayList<TeamPlayer> players = new ArrayList<TeamPlayer>();
 		
-		Element teamDiv = getDocument().getElementById("STHS_JS_Team_" + teamName);
-		String[] line = teamDiv.outerHtml().split("\n");
+		Element teamDiv = getDocument().select("div[id*=STHS_JS_Team_" + teamName + "]").first();
+		int posSibling = teamDiv.siblingIndex();
+		
+		//Element teamDiv = getDocument().getElementById("STHS_JS_Team_" + teamName);
+		Element farmDiv = getDocument().select("div[eq(" + posSibling + ")]").first();
+		
+		String[] line = (farmDiv.outerHtml()).split("\n");
 		boolean isGoalies = false;
 		
 		for (int i=0; i < line.length; i++) {

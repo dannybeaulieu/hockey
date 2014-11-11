@@ -34,7 +34,7 @@ public class PlayerArrayAdapter extends ArrayAdapter<TeamPlayer> {
 		
 		TeamPlayer player = getItem(position);
 		txname.setText(player.getName());
-		txcondition.setText("Health\n" + player.getHealth() + "%\n" + player.getInjiury());
+		txcondition.setText(player.getHealth() + "%\n" + player.getInjiury());
 		txinfo.setText(player.getInfo());
 		txposition.setText(player.getPosition());
 		txoverall.setText(player.getOverall());

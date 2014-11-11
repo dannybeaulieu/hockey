@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:padding="5dp">
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
 
 	<TextView
 		android:id="@+id/name"
@@ -11,7 +10,9 @@
 		android:layout_height="wrap_content"
 		android:text="@+id/name"
 		android:layout_toRightOf="@+id/condition"
-		android:layout_marginRight="10dp">
+		android:layout_marginRight="10dp"
+		android:layout_marginLeft="10dp"
+		android:textStyle="bold">
 
 	</TextView>
 
@@ -21,7 +22,11 @@
 		android:layout_height="wrap_content"
 		android:text="@+id/condition"
 		android:textAlignment="center"
-		android:layout_below="@+id/logo">
+		android:layout_below="@+id/logo"
+		android:padding="5dp"
+		android:width="70dp"
+		android:gravity="center"
+		android:textStyle="bold">
 
 	</TextView>
 
@@ -31,7 +36,8 @@
 		android:layout_height="wrap_content"
 		android:text="@+id/info"
 		android:layout_below="@+id/name"
-		android:layout_toRightOf="@+id/condition">
+		android:layout_toRightOf="@+id/condition"
+		android:layout_marginLeft="10dp">
 
 	</TextView>
 
@@ -41,7 +47,9 @@
 		android:layout_height="wrap_content"
 		android:text="@+id/position"
 		android:layout_toRightOf="@+id/info"
-		android:layout_marginLeft="20dp">
+		android:layout_marginLeft="20dp"
+		android:layout_alignParentRight="true"
+		android:gravity="right">
 
 	</TextView>
 
@@ -52,7 +60,9 @@
 		android:text="@+id/overall"
 		android:layout_below="@+id/position"
 		android:layout_toRightOf="@+id/info"
-		android:layout_marginLeft="20dp">
+		android:layout_marginLeft="20dp"
+		android:layout_alignParentRight="true"
+		android:gravity="right">
 
 	</TextView>
 
