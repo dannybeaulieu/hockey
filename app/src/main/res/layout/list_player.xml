@@ -5,25 +5,13 @@
 	android:layout_height="wrap_content"
 	android:padding="5dp">
 
-	<ImageView
-		android:id="@+id/logo"
-		android:layout_width="75px"
-		android:layout_height="75px"
-		android:layout_marginLeft="5px"
-		android:layout_marginRight="20px"
-		android:layout_marginTop="5px"
-		android:src="@drawable/heart">
-
-	</ImageView>
-
 	<TextView
 		android:id="@+id/name"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@+id/name"
-		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:layout_toRightOf="@+id/condition"
-		android:padding="20dp">
+		android:layout_marginRight="10dp">
 
 	</TextView>
 
@@ -42,9 +30,29 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@+id/info"
-		android:textAppearance="?android:attr/textAppearanceMedium"
-		android:layout_toRightOf="@+id/name"
-		android:paddingLeft="10dp">
+		android:layout_below="@+id/name"
+		android:layout_toRightOf="@+id/condition">
+
+	</TextView>
+
+	<TextView
+		android:id="@+id/position"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@+id/position"
+		android:layout_toRightOf="@+id/info"
+		android:layout_marginLeft="20dp">
+
+	</TextView>
+
+	<TextView
+		android:id="@+id/overall"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@+id/overall"
+		android:layout_below="@+id/position"
+		android:layout_toRightOf="@+id/info"
+		android:layout_marginLeft="20dp">
 
 	</TextView>
 

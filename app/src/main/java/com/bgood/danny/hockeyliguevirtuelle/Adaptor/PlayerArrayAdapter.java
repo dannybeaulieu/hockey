@@ -29,12 +29,15 @@ public class PlayerArrayAdapter extends ArrayAdapter<TeamPlayer> {
 		TextView txname = (TextView) rowView.findViewById(R.id.name);
 		TextView txcondition = (TextView) rowView.findViewById(R.id.condition);
 		TextView txinfo = (TextView) rowView.findViewById(R.id.info);
-		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
+		TextView txposition = (TextView) rowView.findViewById(R.id.position);
+		TextView txoverall = (TextView) rowView.findViewById(R.id.overall);
 		
 		TeamPlayer player = getItem(position);
 		txname.setText(player.getName());
-		txcondition.setText(player.getHealth() + "%\n" + player.getInjiury());
+		txcondition.setText("Health\n" + player.getHealth() + "%\n" + player.getInjiury());
 		txinfo.setText(player.getInfo());
+		txposition.setText(player.getPosition());
+		txoverall.setText(player.getOverall());
 		
  		double con = 0;
 		if (player.getHealth().length() > 0) {
@@ -42,11 +45,11 @@ public class PlayerArrayAdapter extends ArrayAdapter<TeamPlayer> {
 		}
 		
 		if (con == 100.0) {
-			imageView.setImageResource(R.drawable.heart);
+			txcondition.setBackgroundColor(0xFF99FFCC);
 		} else if (con < 100.0 && player.getInjiury().length() == 0) {
-			imageView.setImageResource(R.drawable.warning);
+			txcondition.setBackgroundColor(0xFFFFFF99);
 		} else {
-			imageView.setImageResource(R.drawable.redcross);
+			txcondition.setBackgroundColor(0xFFFF3333);
 		} 
  
 		return rowView;

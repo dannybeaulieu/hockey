@@ -44,7 +44,7 @@ public class TeamPlayer
 	}
 	
 	public String getInfo() {
-		return _position + " | " + _age + " ans | " + _salary + "$ | " + _contract + " an(s)";
+		return _age + " ans | " + _salary + "$ | " + _contract + " an(s)";
 	}
 	
 	public void setName(String value) {
