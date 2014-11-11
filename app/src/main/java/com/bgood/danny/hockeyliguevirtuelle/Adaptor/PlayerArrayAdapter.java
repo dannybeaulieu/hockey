@@ -26,11 +26,15 @@ public class PlayerArrayAdapter extends ArrayAdapter<TeamPlayer> {
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
  
 		View rowView = inflater.inflate(R.layout.list_player, parent, false);
-		TextView textView = (TextView) rowView.findViewById(R.id.label);
+		TextView txname = (TextView) rowView.findViewById(R.id.name);
+		TextView txcondition = (TextView) rowView.findViewById(R.id.condition);
+		TextView txinfo = (TextView) rowView.findViewById(R.id.info);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
 		
 		TeamPlayer player = getItem(position);
-		textView.setText(player.toString());
+		txname.setText(player.getName());
+		txcondition.setText(player.getHealth() + "%\n" + player.getInjiury());
+		txinfo.setText(player.getInfo());
 		
  		double con = 0;
 		if (player.getHealth().length() > 0) {
@@ -39,7 +43,7 @@ public class PlayerArrayAdapter extends ArrayAdapter<TeamPlayer> {
 		
 		if (con == 100.0) {
 			imageView.setImageResource(R.drawable.heart);
-		} else if (con >= 90.0) {
+		} else if (con < 100.0 && player.getInjiury().length() == 0) {
 			imageView.setImageResource(R.drawable.warning);
 		} else {
 			imageView.setImageResource(R.drawable.redcross);

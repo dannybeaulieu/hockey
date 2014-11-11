@@ -131,12 +131,22 @@ public class WebContentProvider {
 						p.setPosition(line[i].substring(30,33).trim());
 						p.setOverall(line[i].substring(84,87).trim());
 						p.setHealth(line[i].substring(33,39).trim().replace(",","."));
+						p.setInjury(line[i].substring(40,43).trim());
+						p.setAge(line[i].substring(94,97).trim());
+						int pos = line[i].lastIndexOf("$");
+						p.setSalary(line[i].substring(100,pos).trim().replace("&nbsp;",","));
+						p.setContract(line[i].substring(pos + 2,pos + 3).trim());
 					}
 					else
 					{
 						p.setPosition(line[i].substring(30,40).trim());
 						p.setOverall(line[i].substring(98,100).trim());
 						p.setHealth(line[i].substring(40,46).trim().replace(",","."));
+						p.setInjury(line[i].substring(47,50).trim());
+						p.setAge(line[i].substring(107,110).trim());
+						int pos = line[i].lastIndexOf("$");
+						p.setSalary(line[i].substring(113,pos).trim().replace("&nbsp;",","));
+						p.setContract(line[i].substring(pos + 2,pos + 3).trim());
 					}
 					players.add(p);
 				}

@@ -6,6 +6,10 @@ public class TeamPlayer
 	private String _position;
 	private String _overall;
 	private String _health;
+	private String _injury;
+	private String _age;
+	private String _contract;
+	private String _salary;
 	
 	public String getName() {
 		return _name;
@@ -22,6 +26,27 @@ public class TeamPlayer
 	public String getHealth() {
 		return _health;
 	}
+	
+	public String getInjiury() {
+		return _injury;
+	}
+	
+	public String getAge() {
+		return _age;
+	}
+	
+	public String getContract() {
+		return _contract;
+	}
+	
+	public String getSalary() {
+		return _salary;
+	}
+	
+	public String getInfo() {
+		return _position + " | " + _age + " ans | " + _salary + "$ | " + _contract + " an(s)";
+	}
+	
 	public void setName(String value) {
 		_name = value;
 	}
@@ -38,9 +63,25 @@ public class TeamPlayer
 		_health = value;
 	}
 	
+	public void setInjury(String value) {
+		_injury = value;
+	}
+	
+	public void setAge(String value) {
+		_age = value;
+	}
+	
+	public void setContract(String value) {
+		_contract = value;
+	}
+	
+	public void setSalary(String value) {
+		_salary = value;
+	}
+	
 	@Override
 	public String toString()
 	{
-		return _name + " - " + _position + " - " + _health + "%" + "\nOv: " + getOverall();
+		return _name + " - " + _position + " - " + _health + "%" + " - " + _injury + "\nOv: " + getOverall();
 	}
 }
