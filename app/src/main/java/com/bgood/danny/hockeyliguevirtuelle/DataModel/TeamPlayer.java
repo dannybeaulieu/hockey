@@ -10,6 +10,7 @@ public class TeamPlayer
 	private String _age;
 	private String _contract;
 	private String _salary;
+	private Boolean _farm;
 	
 	public String getName() {
 		return _name;
@@ -41,6 +42,10 @@ public class TeamPlayer
 	
 	public String getSalary() {
 		return _salary;
+	}
+	
+	public Boolean getFarm() {
+		return _farm;
 	}
 	
 	public String getInfo() {
@@ -77,6 +82,10 @@ public class TeamPlayer
 	
 	public void setSalary(String value) {
 		_salary = value;
+	}
+	
+	public void setFarm(Boolean value) {
+		_farm = value;
 	}
 	
 	@Override

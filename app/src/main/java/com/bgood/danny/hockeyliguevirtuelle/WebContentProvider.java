@@ -84,15 +84,24 @@ public class WebContentProvider {
 	public team[] getTeams() {
 		ArrayList<team> teams = new ArrayList<team>();
 		
-		Elements links = getDocument().getElementsByAttributeValueStarting("href", "#");
+		Elements divs = getDocument().select("div[id*=\"STHS_JS_Team_\"]");
+		Boolean newTeam = true;
+		team t = null;
 		
-		ListIterator linkIterator = links.listIterator();
-	    while (linkIterator.hasNext()) {
-			Element teamElement = ((Element)linkIterator.next());
+		ListIterator divIterator = divs.listIterator();
+	    while (divIterator.hasNext()) {
+			Element teamElement = ((Element)divIterator.next());
 			
-			if (!teamElement.text().contains("Page Top")) {
-				team newTeam = new team(teamElement.attr("href").replace("#", ""), teamElement.text());
-				teams.add(newTeam);
+			if (newTeam) {
+				String attrValue = teamElement.attr("id");
+				t = new team(attrValue, attrValue.replace("STHS_JS_Team_",""));
+				newTeam = false;
+			}
+			else {
+				newTeam = true;
+				String attrValue = teamElement.attr("id");
+				t.setFarmName(attrValue);
+				teams.add(t);
 			}
 		}
 			
@@ -105,27 +114,29 @@ public class WebContentProvider {
 	
 	public String getDate() {
 		Element h4 = getDocument().getElementsByTag("h4").first();
-		
 		return h4.text();
 	}
 	
-	public ArrayList<TeamPlayer> getTeamPlayers(String teamName) {
+	public ArrayList<TeamPlayer> getTeamPlayers(String teamName, String farmTeam) {
 		ArrayList<TeamPlayer> players = new ArrayList<TeamPlayer>();
+		Element teamDiv = getDocument().getElementById(teamName);
+		Element farmDiv = getDocument().getElementById(farmTeam);
 		
-		Element teamDiv = getDocument().select("div[id*=STHS_JS_Team_" + teamName + "]").first();
-		int posSibling = teamDiv.siblingIndex();
+		ExtractPlayers(teamDiv.outerHtml(), players, false);
+		ExtractPlayers(farmDiv.outerHtml(), players, true);
 		
-		//Element teamDiv = getDocument().getElementById("STHS_JS_Team_" + teamName);
-		Element farmDiv = getDocument().select("div[eq(" + posSibling + ")]").first();
-		
-		String[] line = (farmDiv.outerHtml()).split("\n");
+		return players;
+	}
+	
+	private void ExtractPlayers(String html, ArrayList<TeamPlayer> players, Boolean farm) {
+		String[] line = (html).split("\n");
 		boolean isGoalies = false;
-		
+
 		for (int i=0; i < line.length; i++) {
 			if (!line[i].trim().startsWith("<") &&
 			    !line[i].trim().startsWith("Player") &&
 				!line[i].trim().startsWith("-")) {
-					
+
 				TeamPlayer p = new TeamPlayer();
 				if (line[i].trim().startsWith("Goalie")) {
 					isGoalies = true;
@@ -153,12 +164,11 @@ public class WebContentProvider {
 						p.setSalary(line[i].substring(113,pos).trim().replace("&nbsp;",","));
 						p.setContract(line[i].substring(pos + 2,pos + 3).trim());
 					}
+					p.setFarm(farm);
 					players.add(p);
 				}
 			}
 		}
-		
-		return players;
 	}
 	
 	public boolean ligueFileExist() {

@@ -33,7 +33,13 @@ public class PlayerArrayAdapter extends ArrayAdapter<TeamPlayer> {
 		TextView txoverall = (TextView) rowView.findViewById(R.id.overall);
 		
 		TeamPlayer player = getItem(position);
+		
 		txname.setText(player.getName());
+		
+		if (player.getFarm()) {
+			txname.setText(txname.getText() + " (farm)");
+		}
+		
 		txcondition.setText(player.getHealth() + "%\n" + player.getInjiury());
 		txinfo.setText(player.getInfo());
 		txposition.setText(player.getPosition());

@@ -5,6 +5,7 @@ public class team
 {
 	private String _name = "";
 	private String _key = "";
+	private String _farmName = "";
 	private ArrayList<TeamPlayer> players = new ArrayList<TeamPlayer>();
 	
 	public team(String key, String name) {
@@ -26,6 +27,14 @@ public class team
 	
 	public String getKey() {
 		return _key;
+	}
+	
+	public void setFarmName(String value) {
+		_farmName = value;
+	}
+
+	public String getFarmName() {
+		return _farmName;
 	}
 	
 	public ArrayList<TeamPlayer> getPlayers() {

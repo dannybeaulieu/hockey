@@ -43,7 +43,7 @@ public class Players extends Activity {
 					ListView playerList = (ListView)findViewById(R.id.activityplayersList);
 					
 					PlayerArrayAdapter dataAdapter = new PlayerArrayAdapter(Players.this, 
-																			provider.getTeamPlayers(selectedTeam.getKey()));
+																			provider.getTeamPlayers(selectedTeam.getKey(), selectedTeam.getFarmName()));
 																			
 					dataAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
 					playerList.setAdapter(dataAdapter);
