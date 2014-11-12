@@ -159,6 +159,7 @@ public class WebContentProvider {
 						p.setOverall(line[i].substring(98,100).trim());
 						p.setHealth(line[i].substring(40,46).trim().replace(",","."));
 						p.setInjury(line[i].substring(47,50).trim());
+						p.setCk(line[i].substring(50,53).trim());
 						p.setAge(line[i].substring(107,110).trim());
 						int pos = line[i].lastIndexOf("$");
 						p.setSalary(line[i].substring(113,pos).trim().replace("&nbsp;",","));

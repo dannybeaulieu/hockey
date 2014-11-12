@@ -33,6 +33,17 @@ public class Players extends Activity {
 		
 		provider = new WebContentProvider(getBaseContext(), global, mHandler);
 		Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
+		ListView playerList = (ListView)findViewById(R.id.activityplayersList);
+		
+		playerList.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+				TeamPlayer player = (TeamPlayer) a.getItemAtPosition(position);
+				Intent intent = new Intent(v.getContext(), PlayerDetail.class);
+				intent.putExtra("com.bgood.danny.hockeyliguevirtuelle", player);
+				startActivity(intent);
+			}
+		});
 		
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
@@ -41,10 +52,9 @@ public class Players extends Activity {
 								   
 					team selectedTeam = (team)(arg0.getSelectedItem());
 					ListView playerList = (ListView)findViewById(R.id.activityplayersList);
-					
+				
 					PlayerArrayAdapter dataAdapter = new PlayerArrayAdapter(Players.this, 
-																			provider.getTeamPlayers(selectedTeam.getKey(), selectedTeam.getFarmName()));
-																			
+																			provider.getTeamPlayers(selectedTeam.getKey(), selectedTeam.getFarmName()));						
 					dataAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
 					playerList.setAdapter(dataAdapter);
 				}
