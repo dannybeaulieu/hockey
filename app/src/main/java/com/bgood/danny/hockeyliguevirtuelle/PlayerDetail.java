@@ -5,6 +5,7 @@ import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import android.widget.*;
 import android.content.*;
 import java.text.*;
+import com.bgood.danny.hockeyliguevirtuelle.Adaptor.*;
 
 public class PlayerDetail extends Activity {
 	
@@ -26,7 +27,9 @@ public class PlayerDetail extends Activity {
 		TextView txoverall = (TextView) findViewById(R.id.overall);
 		ListView attributes = (ListView) findViewById(R.id.lstAttrs);
 		
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,);
+		AttributeArrayMapAdapter dataAdapter = new AttributeArrayMapAdapter(player.getAttributes());
+		attributes.setAdapter(dataAdapter);
+		
 		txname.setText(player.getName());
 
 		if (player.getFarm()) {

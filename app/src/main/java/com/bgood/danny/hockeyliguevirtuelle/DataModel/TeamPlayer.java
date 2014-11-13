@@ -6,14 +6,14 @@ import android.util.*;
 public class TeamPlayer implements Parcelable
 {
 	public TeamPlayer() {
-		_attributes = new HashMap<String, String>();
+		_attributes = new LinkedHashMap<String, String>();
 	}
 	
 	public TeamPlayer(Parcel in) {
 		String[] data = new String[9];
 		
 		in.readStringArray(data);
-		_attributes = (HashMap<String, String>)in.readSerializable();
+		_attributes = (LinkedHashMap<String, String>)(in.readSerializable());
 		_name = data[0];
 		_position = data[1];
 		_overall = data[2];
@@ -44,9 +44,9 @@ public class TeamPlayer implements Parcelable
 	private String _contract;
 	private String _salary;
 	private Boolean _farm;
-	private HashMap<String, String> _attributes;
+	private LinkedHashMap<String, String> _attributes;
 	
-	public HashMap<String, String> getAttributes() {
+	public LinkedHashMap<String, String> getAttributes() {
 		return _attributes;
 	}
 	

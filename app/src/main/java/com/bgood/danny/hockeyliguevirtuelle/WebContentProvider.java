@@ -153,6 +153,7 @@ public class WebContentProvider {
 						int pos = line[i].lastIndexOf("$");
 						p.setSalary(line[i].substring(100,pos).trim().replace("&nbsp;",","));
 						p.setContract(line[i].substring(pos + 2,pos + 3).trim());
+						SetPlayerAttributes(line[i], p, PlayerAttributesMap.getGoalerAttrs());
 					}
 					else
 					{
@@ -173,13 +174,13 @@ public class WebContentProvider {
 		}
 	}
 	
-	private void SetPlayerAttributes(String line, TeamPlayer player, ArrayMap<String, PlayerAttribute> attrs) {
+	private void SetPlayerAttributes(String line, TeamPlayer player, LinkedHashMap<String, PlayerAttribute> attrs) {
 		
-		for (String attr : attrs.keySet()) {
-			int start = attrs.get(attr).getStart();
-			int end = attrs.get(attr).getEnd();
+		for (PlayerAttribute attr : attrs.values()) {
+			int start = attr.getStart();
+			int end = attr.getEnd();
 			
-			player.getAttributes().put(attrs.get(attr).getName(), line.substring(start,end).trim());
+			player.getAttributes().put(attr.getName(), line.substring(start,end).trim());
 		}
 	}
 	
