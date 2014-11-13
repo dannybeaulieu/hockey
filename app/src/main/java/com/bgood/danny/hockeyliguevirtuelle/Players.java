@@ -122,6 +122,7 @@ public class Players extends Activity {
 			Global global = ((Global)getApplicationContext());
 			global.setLeftPlayer(players.get(info.position));
 			global.setRightPlayer(null);
+			invalidateOptionsMenu();
         }
 		if (item.getItemId() == R.id.rightPlayer) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
@@ -136,6 +137,19 @@ public class Players extends Activity {
         
         return true;
     }
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu)
+	{
+		super.onPrepareOptionsMenu(menu);
+		Global global = ((Global)getApplicationContext());
+		
+		if (global.getLeftPlayer() != null) {
+			menu.getItem(1).setEnabled(true);
+		}
+		
+		return true;
+	}
 	
 	private void bindData() {
 		TextView date = (TextView)findViewById(R.id.activityplayersDate);
