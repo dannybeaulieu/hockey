@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item
+        android:id="@+id/leftPlayer"
+        android:title="Select as left player"
+		android:orderInCategory="100"
+        android:showAsAction="never" />
+	<item
+        android:id="@+id/rightPlayer"
+        android:title="Select as right player and compare"
+		android:orderInCategory="200"
+        android:showAsAction="never"
+		android:enabled="false"/>
+    
+</menu>

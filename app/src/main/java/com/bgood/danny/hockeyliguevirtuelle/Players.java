@@ -14,6 +14,8 @@ import android.widget.AdapterView.*;
 import com.bgood.danny.hockeyliguevirtuelle.Adaptor.*;
 import java.io.*;
 import android.preference.*;
+import android.view.ContextMenu.*;
+import java.util.*;
 
 public class Players extends Activity {
 	WebContentProvider provider = null;
@@ -45,6 +47,8 @@ public class Players extends Activity {
 				startActivity(intent);
 			}
 		});
+		
+		registerForContextMenu(playerList);
 		
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
@@ -78,6 +82,16 @@ public class Players extends Activity {
         getMenuInflater().inflate(R.menu.players, menu);
         return true;
     }
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		
+		if (v.getId() == R.id.activityplayersList) {
+			MenuInflater inflater = getMenuInflater();
+			inflater.inflate(R.menu.long_click_player, menu);
+		}
+	}
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -94,6 +108,33 @@ public class Players extends Activity {
 						   Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+	
+	@Override
+    public boolean onContextItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.leftPlayer) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+			Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
+			
+			team selTeam = (team) spinner.getSelectedItem();
+			ArrayList<TeamPlayer> players = provider.getTeamPlayers(selTeam.getName(), selTeam.getFarmName());
+			
+			Global global = ((Global)getApplicationContext());
+			global.setLeftPlayer(players.get(info.position));
+			global.setRightPlayer(null);
+        }
+		if (item.getItemId() == R.id.rightPlayer) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+			Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
+
+			team selTeam = (team) spinner.getSelectedItem();
+			ArrayList<TeamPlayer> players = provider.getTeamPlayers(selTeam.getName(), selTeam.getFarmName());
+
+			Global global = ((Global)getApplicationContext());
+			global.setRightPlayer(players.get(info.position));
+        }
+        
+        return true;
     }
 	
 	private void bindData() {
