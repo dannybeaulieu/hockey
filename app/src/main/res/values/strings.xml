@@ -3,6 +3,9 @@
 
     <string name="app_name">Hockey - Ligue Virtuelle</string>
     <string name="action_update">Update</string>
+	<string name="action_setting">Preferences</string>
 	<string name="action_reset">Reset</string>
+	<string name="pref_default_team">Default Team</string>
+	<string name="pref_default_team_summary">Set the default team</string>
 
 </resources>

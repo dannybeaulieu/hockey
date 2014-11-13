@@ -13,6 +13,7 @@ import android.view.*;
 import android.widget.AdapterView.*;
 import com.bgood.danny.hockeyliguevirtuelle.Adaptor.*;
 import java.io.*;
+import android.preference.*;
 
 public class Players extends Activity {
 	WebContentProvider provider = null;
@@ -80,6 +81,10 @@ public class Players extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.action_setting) {
+            Intent i = new Intent(this, UserSettingActivity.class);
+			startActivity(i);
+        }
         if (item.getItemId() == R.id.action_update) {
             provider.UpdateContent();
         }
@@ -100,5 +105,20 @@ public class Players extends Activity {
 																provider.getTeams());
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		teamSpinner.setAdapter(dataAdapter);
+		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		teamSpinner.setSelection(getItemPosition(dataAdapter, prefs.getString("prefDefaultTeam", "default choice")), true);
+	}
+	
+	private int getItemPosition(ArrayAdapter<team> adapter, String name) {
+		int index = 0;
+		for (int i = 0; i < adapter.getCount(); i++) {
+			if (((team)adapter.getItem(i)).getName().equals(name)) {
+				index = i;
+				break;
+			}
+		}
+		
+		return index;
 	}
 }
