@@ -4,6 +4,7 @@ import android.os.*;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import android.widget.*;
 import android.content.*;
+import java.text.*;
 
 public class PlayerDetail extends Activity {
 	
@@ -23,8 +24,9 @@ public class PlayerDetail extends Activity {
 		TextView txinfo = (TextView) findViewById(R.id.info);
 		TextView txposition = (TextView) findViewById(R.id.position);
 		TextView txoverall = (TextView) findViewById(R.id.overall);
-		TextView txCk1 = (TextView) findViewById(R.id.txtCk);
+		ListView attributes = (ListView) findViewById(R.id.lstAttrs);
 		
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,);
 		txname.setText(player.getName());
 
 		if (player.getFarm()) {
@@ -35,7 +37,6 @@ public class PlayerDetail extends Activity {
 		txinfo.setText(player.getInfo());
 		txposition.setText(player.getPosition());
 		txoverall.setText(player.getOverall());
-		txCk1.setText(player.getCk());
 		
  		double con = 0;
 		if (player.getHealth().length() > 0) {

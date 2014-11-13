@@ -14,6 +14,7 @@ import android.app.*;
 import android.widget.*;
 import android.os.*;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
+import android.util.*;
 
 /**
  * Created by Danny on 2014-10-15.
@@ -159,16 +160,26 @@ public class WebContentProvider {
 						p.setOverall(line[i].substring(98,100).trim());
 						p.setHealth(line[i].substring(40,46).trim().replace(",","."));
 						p.setInjury(line[i].substring(47,50).trim());
-						p.setCk(line[i].substring(50,53).trim());
 						p.setAge(line[i].substring(107,110).trim());
 						int pos = line[i].lastIndexOf("$");
 						p.setSalary(line[i].substring(113,pos).trim().replace("&nbsp;",","));
 						p.setContract(line[i].substring(pos + 2,pos + 3).trim());
+						SetPlayerAttributes(line[i], p, PlayerAttributesMap.getPlayerAttrs());
 					}
 					p.setFarm(farm);
 					players.add(p);
 				}
 			}
+		}
+	}
+	
+	private void SetPlayerAttributes(String line, TeamPlayer player, ArrayMap<String, PlayerAttribute> attrs) {
+		
+		for (String attr : attrs.keySet()) {
+			int start = attrs.get(attr).getStart();
+			int end = attrs.get(attr).getEnd();
+			
+			player.getAttributes().put(attrs.get(attr).getName(), line.substring(start,end).trim());
 		}
 	}
 	

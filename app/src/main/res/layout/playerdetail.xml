@@ -58,7 +58,8 @@
 			android:layout_marginLeft="20dp"
 			android:layout_alignParentRight="true"
 			android:gravity="right"
-			android:textAppearance="?android:attr/textAppearanceMedium">
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_marginRight="5dp">
 
 		</TextView>
 
@@ -72,7 +73,8 @@
 			android:layout_marginLeft="20dp"
 			android:layout_alignParentRight="true"
 			android:gravity="right"
-			android:textAppearance="?android:attr/textAppearanceLarge">
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:layout_marginRight="5dp">
 
 		</TextView>
 
@@ -85,37 +87,15 @@
 			android:layout_toRightOf="@id/condition"
 			android:layout_marginTop="5dp"
 			android:id="@+id/line"/>
-
-		<TableLayout
+		
+		<ListView
+			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:layout_width="match_parent"
-			android:id="@+id/playerdetailTable"
-			android:layout_below="@id/line"
 			android:layout_toRightOf="@id/condition"
-			android:layout_marginTop="5dp">
-
-			<TableRow
-				android:layout_height="wrap_content"
-				android:layout_width="fill_parent"
-				android:id="@+id/row1">
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:text="CK"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content"
-					android:layout_weight="1.0"/>
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content"
-					android:layout_weight="2.0"
-					android:id="@+id/txtCk"/>
-
-			</TableRow>
-
-		</TableLayout>
+			android:layout_below="@id/info"
+			android:layout_marginTop="5dp"
+			android:id="@+id/lstAttrs"	>
+		</ListView>
 
 	</RelativeLayout>
 
