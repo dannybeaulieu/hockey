@@ -142,10 +142,20 @@ public class Players extends Activity {
 			ArrayList<TeamPlayer> players = provider.getTeamPlayers(selTeam.getKey(), selTeam.getFarmName());
 
 			Global global = ((Global)getApplicationContext());
-			global.setRightPlayer(players.get(info.position));
 			
-			Intent intent = new Intent(this, ComparePlayers.class);
-			startActivity(intent);
+			if ((global.getLeftPlayer().getPosition().equals("G") &&
+				players.get(info.position).getPosition().equals("G")) ||
+				(!global.getLeftPlayer().getPosition().equals("G") &&
+				!players.get(info.position).getPosition().equals("G"))) {
+				
+				global.setRightPlayer(players.get(info.position));
+
+				Intent intent = new Intent(this, ComparePlayers.class);
+				startActivity(intent);
+			}
+			else {
+				Toast.makeText(this, "Must select player of same type", Toast.LENGTH_LONG).show();
+			}
         }
         
         return true;
