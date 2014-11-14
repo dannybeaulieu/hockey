@@ -20,7 +20,7 @@
 				android:layout_weight="3.0"
 				android:id="@+id/attribut"
 				android:background="#000000"
-				android:textAppearance="?android:attr/textAppearanceLarge"/>
+				android:textAppearance="?android:attr/textAppearanceSmall"/>
 
 			<TextView
 				android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
 				android:id="@+id/leftValue"
 				android:background="#000000"
 				android:textColor="#FFFFFF"
-				android:textAppearance="?android:attr/textAppearanceLarge"/>
+				android:textAppearance="?android:attr/textAppearanceSmall"/>
 
 			<TextView
 				android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
 				android:id="@+id/rightValue"
 				android:background="#000000"
 				android:textColor="#FFFFFF"
-				android:textAppearance="?android:attr/textAppearanceLarge"/>
+				android:textAppearance="?android:attr/textAppearanceSmall"/>
 
 		</TableRow>
 
