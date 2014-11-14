@@ -88,8 +88,19 @@ public class Players extends Activity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		
 		if (v.getId() == R.id.activityplayersList) {
+			Global global = ((Global)getApplicationContext());
+			
 			MenuInflater inflater = getMenuInflater();
 			inflater.inflate(R.menu.long_click_player, menu);
+			
+			if (global.getLeftPlayer() != null) {
+				menu.findItem(R.id.rightPlayer).setEnabled(true);
+			}
+			if (global.getRightPlayer() != null) {
+				menu.findItem(R.id.rightPlayer).setEnabled(false);
+				global.setLeftPlayer(null);
+				global.setRightPlayer(null);
+			}
 		}
 	}
 
@@ -117,40 +128,29 @@ public class Players extends Activity {
 			Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
 			
 			team selTeam = (team) spinner.getSelectedItem();
-			ArrayList<TeamPlayer> players = provider.getTeamPlayers(selTeam.getName(), selTeam.getFarmName());
+			ArrayList<TeamPlayer> players = provider.getTeamPlayers(selTeam.getKey(), selTeam.getFarmName());
 			
 			Global global = ((Global)getApplicationContext());
 			global.setLeftPlayer(players.get(info.position));
 			global.setRightPlayer(null);
-			invalidateOptionsMenu();
         }
 		if (item.getItemId() == R.id.rightPlayer) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 			Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
 
 			team selTeam = (team) spinner.getSelectedItem();
-			ArrayList<TeamPlayer> players = provider.getTeamPlayers(selTeam.getName(), selTeam.getFarmName());
+			ArrayList<TeamPlayer> players = provider.getTeamPlayers(selTeam.getKey(), selTeam.getFarmName());
 
 			Global global = ((Global)getApplicationContext());
 			global.setRightPlayer(players.get(info.position));
+			
+			Intent intent = new Intent(this, ComparePlayers.class);
+			startActivity(intent);
         }
         
         return true;
     }
 
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu)
-	{
-		super.onPrepareOptionsMenu(menu);
-		Global global = ((Global)getApplicationContext());
-		
-		if (global.getLeftPlayer() != null) {
-			menu.getItem(1).setEnabled(true);
-		}
-		
-		return true;
-	}
-	
 	private void bindData() {
 		TextView date = (TextView)findViewById(R.id.activityplayersDate);
 		date.setText(provider.getDate());

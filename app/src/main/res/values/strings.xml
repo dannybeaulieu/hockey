@@ -7,5 +7,7 @@
 	<string name="action_reset">Reset</string>
 	<string name="pref_default_team">Default Team</string>
 	<string name="pref_default_team_summary">Set the default team</string>
+	<string name="left">Left</string>
+	<string name="right">Right</string>
 
 </resources>
