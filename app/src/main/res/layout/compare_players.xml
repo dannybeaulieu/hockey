@@ -5,181 +5,44 @@
 	android:layout_height="fill_parent"
 	android:orientation="vertical">
 
-	<RelativeLayout
+	<TableLayout
+		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:id="@+id/compareTable">
 
-		<TextView
-			android:id="@+id/lname"
-			android:layout_width="wrap_content"
+		<TableRow
 			android:layout_height="wrap_content"
-			android:text="@+id/lname"
-			android:layout_toRightOf="@+id/lcondition"
-			android:layout_marginRight="10dp"
-			android:layout_marginLeft="10dp"
-			android:textStyle="bold"
-			android:textAppearance="?android:attr/textAppearanceLarge">
+			android:layout_width="match_parent">
 
-		</TextView>
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_weight="3.0"
+				android:id="@+id/attribut"
+				android:background="#000000"
+				android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-		<TextView
-			android:id="@+id/lcondition"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@+id/lcondition"
-			android:textAlignment="center"
-			android:layout_below="@+id/llogo"
-			android:padding="5dp"
-			android:width="70dp"
-			android:gravity="center"
-			android:textStyle="bold">
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_weight="3.0"
+				android:id="@+id/leftValue"
+				android:background="#000000"
+				android:textColor="#FFFFFF"
+				android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-		</TextView>
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_weight="3.0"
+				android:id="@+id/rightValue"
+				android:background="#000000"
+				android:textColor="#FFFFFF"
+				android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-		<TextView
-			android:id="@+id/linfo"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@+id/linfo"
-			android:layout_below="@+id/lname"
-			android:layout_toRightOf="@+id/lcondition"
-			android:layout_marginLeft="10dp"
-			android:textAppearance="?android:attr/textAppearanceMedium">
+		</TableRow>
 
-		</TextView>
-
-		<TextView
-			android:id="@+id/lposition"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@+id/lposition"
-			android:layout_toRightOf="@+id/linfo"
-			android:layout_marginLeft="20dp"
-			android:layout_alignParentRight="true"
-			android:gravity="right"
-			android:textAppearance="?android:attr/textAppearanceMedium"
-			android:layout_marginRight="5dp">
-
-		</TextView>
-
-		<TextView
-			android:id="@+id/loverall"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@+id/loverall"
-			android:layout_below="@+id/lposition"
-			android:layout_toRightOf="@+id/linfo"
-			android:layout_marginLeft="20dp"
-			android:layout_alignParentRight="true"
-			android:gravity="right"
-			android:textAppearance="?android:attr/textAppearanceLarge"
-			android:layout_marginRight="5dp">
-
-		</TextView>
-		
-		<TextView
-			android:id="@+id/left"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/left"
-			android:textAlignment="center"
-			android:layout_below="@+id/lcondition"
-			android:padding="5dp"
-			android:width="70dp"
-			android:gravity="center"
-			android:textStyle="bold">
-			
-		</TextView>
-
-	</RelativeLayout>
-	
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
-
-		<TextView
-			android:id="@+id/rname"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@+id/rname"
-			android:layout_toRightOf="@+id/rcondition"
-			android:layout_marginRight="10dp"
-			android:layout_marginLeft="10dp"
-			android:textStyle="bold"
-			android:textAppearance="?android:attr/textAppearanceLarge">
-
-		</TextView>
-
-		<TextView
-			android:id="@+id/rcondition"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@+id/rcondition"
-			android:textAlignment="center"
-			android:layout_below="@+id/rlogo"
-			android:padding="5dp"
-			android:width="70dp"
-			android:gravity="center"
-			android:textStyle="bold">
-
-		</TextView>
-
-		<TextView
-			android:id="@+id/rinfo"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@+id/rinfo"
-			android:layout_below="@+id/rname"
-			android:layout_toRightOf="@+id/rcondition"
-			android:layout_marginLeft="10dp"
-			android:textAppearance="?android:attr/textAppearanceMedium">
-
-		</TextView>
-
-		<TextView
-			android:id="@+id/rposition"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@+id/rposition"
-			android:layout_toRightOf="@+id/rinfo"
-			android:layout_marginLeft="20dp"
-			android:layout_alignParentRight="true"
-			android:gravity="right"
-			android:textAppearance="?android:attr/textAppearanceMedium"
-			android:layout_marginRight="5dp">
-
-		</TextView>
-
-		<TextView
-			android:id="@+id/roverall"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@+id/roverall"
-			android:layout_below="@+id/rposition"
-			android:layout_toRightOf="@+id/rinfo"
-			android:layout_marginLeft="20dp"
-			android:layout_alignParentRight="true"
-			android:gravity="right"
-			android:textAppearance="?android:attr/textAppearanceLarge"
-			android:layout_marginRight="5dp">
-
-		</TextView>
-
-		<TextView
-			android:id="@+id/right"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/right"
-			android:textAlignment="center"
-			android:layout_below="@+id/rcondition"
-			android:padding="5dp"
-			android:width="70dp"
-			android:gravity="center"
-			android:textStyle="bold">
-
-		</TextView>
-
-	</RelativeLayout>
+	</TableLayout>
 
 </LinearLayout>
 

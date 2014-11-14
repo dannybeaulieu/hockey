@@ -3,6 +3,8 @@ import android.app.*;
 import android.os.*;
 import android.widget.*;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
+import android.graphics.*;
+import android.widget.TableRow.*;
 
 public class ComparePlayers extends Activity
 {
@@ -12,43 +14,53 @@ public class ComparePlayers extends Activity
 		setContentView(R.layout.compare_players);
 		Global global = ((Global)getApplicationContext());
 		
-		TeamPlayer lplayer = global.getLeftPlayer();
-		((TextView)findViewById(R.id.lcondition)).setText(lplayer.getHealth() + "%");
-		((TextView)findViewById(R.id.linfo)).setText(lplayer.getInfo());
-		((TextView)findViewById(R.id.lname)).setText(lplayer.getName());
-		((TextView)findViewById(R.id.lposition)).setText(lplayer.getPosition());
-		((TextView)findViewById(R.id.loverall)).setText(lplayer.getOverall());
-		
+		TeamPlayer lplayer = global.getLeftPlayer();	
 		TeamPlayer rplayer = global.getRightPlayer();
-		((TextView)findViewById(R.id.rcondition)).setText(rplayer.getHealth() + "%");
-		((TextView)findViewById(R.id.rinfo)).setText(rplayer.getInfo());
-		((TextView)findViewById(R.id.rname)).setText(rplayer.getName());
-		((TextView)findViewById(R.id.rposition)).setText(rplayer.getPosition());
-		((TextView)findViewById(R.id.roverall)).setText(rplayer.getOverall());
 		
-		double con = 0;
-		if (lplayer.getHealth().length() > 0) {
-			con = Double.valueOf(lplayer.getHealth());
-		}
-
-		if (con == 100.0) {
-			((TextView)findViewById(R.id.lcondition)).setBackgroundColor(0xFF99FFCC);
-		} else if (con < 100.0 && lplayer.getInjiury().length() == 0) {
-			((TextView)findViewById(R.id.lcondition)).setBackgroundColor(0xFFFFFF99);
-		} else {
-			((TextView)findViewById(R.id.lcondition)).setBackgroundColor(0xFFFF3333);
-		} 
+		((TextView)findViewById(R.id.leftValue)).setText(lplayer.getName());
+		((TextView)findViewById(R.id.rightValue)).setText(rplayer.getName());
 		
-		if (rplayer.getHealth().length() > 0) {
-			con = Double.valueOf(rplayer.getHealth());
+		TableLayout tl = (TableLayout)findViewById(R.id.compareTable);
+		int index = 0;
+		
+		for (ComparePlayerData data : ComparePlayerData.PopulateComparePlayerData(lplayer, rplayer)) {
+			TableRow row = new TableRow(this);
+			
+		    row.setId(10);
+			row.setBackgroundColor(index % 2 == 0 ? Color.WHITE : Color.LTGRAY);
+			row.setLayoutParams(new LayoutParams(
+			
+										LayoutParams.FILL_PARENT,
+										LayoutParams.WRAP_CONTENT));
+										
+			TextView attribut = new TextView(this);
+			attribut.setId(20);
+			LayoutParams params = new LayoutParams();
+			params.weight = (float) 3.0;
+			attribut.setLayoutParams(params);
+			attribut.setText(data.getAttribut());
+			
+			TextView leftV = new TextView(this);
+			leftV.setId(30);
+			params = new LayoutParams();
+			params.weight = (float) 3.0;
+			leftV.setLayoutParams(params);
+			leftV.setText(data.getLeftValue());
+			
+			TextView rightV = new TextView(this);
+			rightV.setId(20);
+			params = new LayoutParams();
+			params.weight = (float) 3.0;
+			rightV.setLayoutParams(params);
+			rightV.setText(data.getRightValue());
+			
+			row.addView(attribut);
+			row.addView(leftV);
+			row.addView(rightV);
+			
+			index++;
+			
+			tl.addView(row);
 		}
-
-		if (con == 100.0) {
-			((TextView)findViewById(R.id.rcondition)).setBackgroundColor(0xFF99FFCC);
-		} else if (con < 100.0 && rplayer.getInjiury().length() == 0) {
-			((TextView)findViewById(R.id.rcondition)).setBackgroundColor(0xFFFFFF99);
-		} else {
-			((TextView)findViewById(R.id.rcondition)).setBackgroundColor(0xFFFF3333);
-		} 
 	}
 }
