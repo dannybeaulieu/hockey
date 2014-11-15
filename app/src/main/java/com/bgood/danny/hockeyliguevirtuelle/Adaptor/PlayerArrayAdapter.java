@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import java.util.*;
+import android.graphics.*;
  
 public class PlayerArrayAdapter extends ArrayAdapter<TeamPlayer> {
 	private final Context context;
@@ -57,6 +58,14 @@ public class PlayerArrayAdapter extends ArrayAdapter<TeamPlayer> {
 		} else {
 			txcondition.setBackgroundColor(0xFFFF3333);
 		} 
+		
+		if (position % 2 == 0) {
+			rowView.setBackgroundColor(Color.WHITE);
+		}
+		else
+		{
+			rowView.setBackgroundColor(0xFFB7D4E7);
+		}
  
 		return rowView;
 	}
