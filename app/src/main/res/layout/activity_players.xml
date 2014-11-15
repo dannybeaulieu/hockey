@@ -51,8 +51,8 @@
 			android:textColor="#FFFFFF"/>
 
 		<ImageButton
-			android:layout_height="30dp"
-			android:layout_width="30dp"
+			android:layout_height="48dp"
+			android:layout_width="48dp"
 			android:src="@drawable/refresh"
 			style="?android:attr/buttonBarButtonStyle"
 			android:scaleX="1"
@@ -61,19 +61,21 @@
 			android:adjustViewBounds="true"
 			android:layout_toLeftOf="@+id/settingBtn"
 			android:id="@+id/refreshBtn"
-			android:layout_centerVertical="true"/>
+			android:layout_centerVertical="true"
+			android:layout_marginRight="10dp"/>
 
 		<ImageButton
-			android:layout_height="30dp"
+			android:layout_height="40dp"
 			style="?android:attr/buttonBarButtonStyle"
-			android:layout_width="30dp"
+			android:layout_width="40dp"
 			android:layout_alignParentEnd="true"
 			android:scaleX="1"
 			android:scaleY="1"
 			android:scaleType="centerCrop"
 			android:id="@+id/settingBtn"
 			android:src="@drawable/setting"
-			android:layout_centerVertical="true"/>
+			android:layout_centerVertical="true"
+			android:layout_marginRight="10dp"/>
 
 	</RelativeLayout>
 

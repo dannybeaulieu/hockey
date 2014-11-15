@@ -67,6 +67,22 @@ public class Players extends Activity {
 					// TODO Auto-generated method stub                  
 				}
 			});
+			
+		ImageButton refresh = (ImageButton)findViewById(R.id.refreshBtn);
+		ImageButton setting = (ImageButton)findViewById(R.id.settingBtn);
+		
+		refresh.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				provider.UpdateContent();
+			}
+		});
+		
+		setting.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(v.getContext(), UserSettingActivity.class);
+				startActivity(i);
+			}
+		});		
 	
 		if (!provider.ligueFileExist()) {
 			provider.UpdateContent();
@@ -74,13 +90,6 @@ public class Players extends Activity {
 		else {
 			bindData();
 		}
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.players, menu);
-        return true;
     }
 	
 	@Override
@@ -104,23 +113,6 @@ public class Players extends Activity {
 		}
 	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.action_setting) {
-            Intent i = new Intent(this, UserSettingActivity.class);
-			startActivity(i);
-        }
-        if (item.getItemId() == R.id.action_update) {
-            provider.UpdateContent();
-        }
-		if (item.getItemId() == R.id.action_reset) {
-            provider.ResetFile();
-			Toast.makeText(getBaseContext(), "File reset, please update.",
-						   Toast.LENGTH_LONG).show();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-	
 	@Override
     public boolean onContextItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.leftPlayer) {
