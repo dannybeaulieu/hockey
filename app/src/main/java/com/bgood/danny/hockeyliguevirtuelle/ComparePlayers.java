@@ -17,8 +17,8 @@ public class ComparePlayers extends Activity
 		TeamPlayer lplayer = global.getLeftPlayer();	
 		TeamPlayer rplayer = global.getRightPlayer();
 		
-		((TextView)findViewById(R.id.leftValue)).setText(lplayer.getName());
-		((TextView)findViewById(R.id.rightValue)).setText(rplayer.getName());
+		((TextView)findViewById(R.id.leftValue)).setText(lplayer.getName().replace(" ", "\n"));
+		((TextView)findViewById(R.id.rightValue)).setText(rplayer.getName().replace(" ", "\n"));
 		
 		TableLayout tl = (TableLayout)findViewById(R.id.compareTable);
 		int index = 0;
@@ -27,7 +27,7 @@ public class ComparePlayers extends Activity
 			TableRow row = new TableRow(this);
 			
 		    row.setId(10);
-			row.setBackgroundColor(index % 2 == 0 ? Color.WHITE : Color.LTGRAY);
+			row.setBackgroundColor(index % 2 == 0 ? Color.WHITE : 0xFFB7D4E7);
 			row.setLayoutParams(new LayoutParams(
 			
 										LayoutParams.FILL_PARENT,
@@ -39,6 +39,7 @@ public class ComparePlayers extends Activity
 			params.weight = (float) 3.0;
 			attribut.setLayoutParams(params);
 			attribut.setText(data.getAttribut());
+			attribut.setTextSize(16);
 			
 			TextView leftV = new TextView(this);
 			leftV.setId(30);
@@ -46,6 +47,7 @@ public class ComparePlayers extends Activity
 			params.weight = (float) 3.0;
 			leftV.setLayoutParams(params);
 			leftV.setText(data.getLeftValue());
+			leftV.setTextSize(16);
 			
 			TextView rightV = new TextView(this);
 			rightV.setId(20);
@@ -53,6 +55,7 @@ public class ComparePlayers extends Activity
 			params.weight = (float) 3.0;
 			rightV.setLayoutParams(params);
 			rightV.setText(data.getRightValue());
+			rightV.setTextSize(16);
 			
 			row.addView(attribut);
 			row.addView(leftV);

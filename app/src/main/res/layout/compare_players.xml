@@ -15,30 +15,30 @@
 			android:layout_width="match_parent">
 
 			<TextView
-				android:layout_height="wrap_content"
+				android:layout_height="match_parent"
 				android:layout_width="wrap_content"
 				android:layout_weight="3.0"
 				android:id="@+id/attribut"
-				android:background="#000000"
-				android:textAppearance="?android:attr/textAppearanceSmall"/>
+				android:background="#125BBE"
+				android:textSize="16sp"/>
 
 			<TextView
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:layout_weight="3.0"
 				android:id="@+id/leftValue"
-				android:background="#000000"
+				android:background="#125BBE"
 				android:textColor="#FFFFFF"
-				android:textAppearance="?android:attr/textAppearanceSmall"/>
+				android:textSize="20sp"/>
 
 			<TextView
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:layout_weight="3.0"
 				android:id="@+id/rightValue"
-				android:background="#000000"
+				android:background="#125BBE"
 				android:textColor="#FFFFFF"
-				android:textAppearance="?android:attr/textAppearanceSmall"/>
+				android:textSize="20sp"/>
 
 		</TableRow>
 
