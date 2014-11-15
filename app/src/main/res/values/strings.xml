@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Hockey - Ligue Virtuelle</string>
+    <string name="app_name">LVHQ</string>
+	<string name="player_detail">LVHQ - Player Details</string>
+	<string name="compare_player">LVHQ - Compare two players</string>
+	<string name="preferences">LVHQ - Preferences</string>
     <string name="action_update">Update</string>
 	<string name="action_setting">Preferences</string>
 	<string name="action_reset">Reset</string>

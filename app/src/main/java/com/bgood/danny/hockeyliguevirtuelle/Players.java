@@ -166,7 +166,7 @@ public class Players extends Activity {
 		date.setText(provider.getDate());
 		Spinner teamSpinner = (Spinner)findViewById(R.id.activityplayersSpinner1);
 		ArrayAdapter<team> dataAdapter = new ArrayAdapter<team>(this,
-																android.R.layout.simple_spinner_item, 
+																R.layout.spinner_team_item, 
 																provider.getTeams());
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		teamSpinner.setAdapter(dataAdapter);

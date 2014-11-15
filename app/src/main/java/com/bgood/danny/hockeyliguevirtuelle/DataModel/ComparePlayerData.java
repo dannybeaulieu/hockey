@@ -70,6 +70,12 @@ public class ComparePlayerData
 		cData.setRightValue(right.getContract() + " an(s)");
 		data.add(cData);
 		
+		cData = new ComparePlayerData();
+		cData.setAttribut("Overall");
+		cData.setLeftValue(left.getOverall());
+		cData.setRightValue(right.getOverall());
+		data.add(cData);
+		
 		for (String key : left.getAttributes().keySet()) {
 			cData = new ComparePlayerData();
 			cData.setAttribut(key);
