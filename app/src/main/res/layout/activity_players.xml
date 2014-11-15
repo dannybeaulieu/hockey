@@ -47,12 +47,12 @@
 			android:layout_centerInParent="false"
 			android:layout_centerVertical="true"
 			android:layout_margin="10dp"
-			android:textSize="30sp"
+			android:textSize="20sp"
 			android:textColor="#FFFFFF"/>
 
 		<ImageButton
-			android:layout_height="48dp"
-			android:layout_width="48dp"
+			android:layout_height="33dp"
+			android:layout_width="33dp"
 			android:src="@drawable/refresh"
 			style="?android:attr/buttonBarButtonStyle"
 			android:scaleX="1"
@@ -65,9 +65,9 @@
 			android:layout_marginRight="10dp"/>
 
 		<ImageButton
-			android:layout_height="40dp"
+			android:layout_height="27dp"
 			style="?android:attr/buttonBarButtonStyle"
-			android:layout_width="40dp"
+			android:layout_width="27dp"
 			android:layout_alignParentEnd="true"
 			android:scaleX="1"
 			android:scaleY="1"

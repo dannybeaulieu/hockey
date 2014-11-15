@@ -2,7 +2,7 @@
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="80dp">
+	android:layout_height="65dp">
 
 	<TextView
 		android:id="@+id/name"
@@ -13,7 +13,7 @@
 		android:layout_marginRight="10dp"
 		android:layout_marginLeft="10dp"
 		android:textStyle="bold"
-		android:textSize="25sp">
+		android:textSize="20sp">
 
 	</TextView>
 
@@ -28,7 +28,7 @@
 		android:width="70dp"
 		android:gravity="center"
 		android:textStyle="bold"
-		android:textSize="16sp">
+		android:textSize="14sp">
 
 	</TextView>
 
@@ -40,7 +40,7 @@
 		android:layout_below="@+id/name"
 		android:layout_toRightOf="@+id/condition"
 		android:layout_marginLeft="10dp"
-		android:textSize="20sp"
+		android:textSize="14sp"
 		android:layout_alignParentBottom="true"
 		android:gravity="bottom"
 		android:layout_marginBottom="5dp">
@@ -57,7 +57,7 @@
 		android:layout_alignParentRight="true"
 		android:gravity="right"
 		android:layout_marginRight="5dp"
-		android:textSize="20sp">
+		android:textSize="16sp">
 
 	</TextView>
 
@@ -72,7 +72,7 @@
 		android:layout_alignParentRight="true"
 		android:gravity="bottom|right"
 		android:layout_marginRight="5dp"
-		android:textSize="25sp"
+		android:textSize="20sp"
 		android:layout_alignParentBottom="true"
 		android:layout_marginBottom="5dp">
 
