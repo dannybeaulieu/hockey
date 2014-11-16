@@ -12,5 +12,12 @@
 	<string name="pref_default_team_summary">Set the default team</string>
 	<string name="left">Left</string>
 	<string name="right">Right</string>
-
+	<string-array name="positions">
+		<item>All</item>
+		<item>C</item>
+		<item>LW</item>
+		<item>RW</item>
+		<item>D</item>
+		<item>G</item>
+	</string-array>
 </resources>

@@ -78,12 +78,39 @@
 			android:layout_marginRight="10dp"/>
 
 	</RelativeLayout>
-
-	<ListView
+	
+	<RelativeLayout
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
-		android:id="@+id/activityplayersList"
-		android:layout_below="@+id/actionbar"/>
+		android:id="@+id/middle"
+		android:layout_below="@+id/actionbar">
+		
+		<ListView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:id="@+id/activityplayersList"/>
+	</RelativeLayout>
+	
+	<RelativeLayout
+		android:layout_height="50dp"
+		android:layout_width="match_parent"
+		android:layout_below="@+id/middle"
+		android:background="#125BBE"
+		android:layout_alignParentBottom="true">
 
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:background="#FCFCFC"
+			android:layout_margin="5dp"
+			android:layout_centerHorizontal="true">
+			<Spinner
+				android:layout_height="40dp"
+				android:layout_width="wrap_content"
+				android:id="@+id/activityplayersPosition"
+				style="@style/teamSpinner"
+				android:gravity="center"/>
+		</LinearLayout>
+ 	</RelativeLayout>
 </RelativeLayout>
 
