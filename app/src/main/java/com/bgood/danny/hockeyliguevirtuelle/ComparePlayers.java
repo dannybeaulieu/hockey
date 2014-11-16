@@ -27,7 +27,7 @@ public class ComparePlayers extends Activity
 			TableRow row = new TableRow(this);
 			
 		    row.setId(10);
-			row.setBackgroundColor(index % 2 == 0 ? Color.WHITE : 0xFFB7D4E7);
+			row.setBackgroundColor(index % 2 == 0 ? Color.WHITE : 0xFFB9D3EE);
 			row.setLayoutParams(new LayoutParams(
 			
 										LayoutParams.FILL_PARENT,

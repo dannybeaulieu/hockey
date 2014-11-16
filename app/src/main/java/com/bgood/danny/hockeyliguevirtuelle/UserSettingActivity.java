@@ -5,8 +5,7 @@ import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import java.util.*;
 
 public class UserSettingActivity extends PreferenceActivity
-{
-
+{	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -14,7 +13,15 @@ public class UserSettingActivity extends PreferenceActivity
 		addPreferencesFromResource(R.xml.settings);
 		
 		final ListPreference prefs = (ListPreference)findPreference("prefDefaultTeam");
-		
+		prefs.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				preference.setSummary((String)newValue);
+				
+				return true;
+			}        
+		});
+			
 		setListPreference(prefs);
 	}
 	
@@ -28,5 +35,6 @@ public class UserSettingActivity extends PreferenceActivity
 		prefs.setDefaultValue(teams.get(0));		
 		prefs.setEntries(teams.toArray(new String[teams.size()]));
 		prefs.setEntryValues(teams.toArray(new String[teams.size()]));
+		prefs.setSummary(prefs.getEntry());
 	}
 }

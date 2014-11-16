@@ -49,9 +49,9 @@ public class PlayerDetail extends Activity {
 		if (con == 100.0) {
 			txcondition.setBackgroundColor(0xFF99FFCC);
 		} else if (con < 100.0 && player.getInjiury().length() == 0) {
-			txcondition.setBackgroundColor(0xFFFFFF99);
+			txcondition.setBackgroundColor(0xFFFDFD96);
 		} else {
-			txcondition.setBackgroundColor(0xFFFF3333);
+			txcondition.setBackgroundColor(0xFFC23B22);
 		} 
 	}
 }
