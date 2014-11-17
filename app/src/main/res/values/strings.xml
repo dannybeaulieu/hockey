@@ -7,13 +7,11 @@
 	<string name="preferences">LVHQ - Preferences</string>
     <string name="action_update">Update</string>
 	<string name="action_setting">Preferences</string>
-	<string name="action_reset">Reset</string>
 	<string name="pref_default_team">Default Team</string>
 	<string name="pref_default_team_summary">Set the default team</string>
 	<string name="selectAsLeft">Select as left player</string>
     <string name="selectAsRight">Select as right player and compare</string>
     <string name="position">Position</string>
-    <string name="refresh">Refresh</string>
     <string-array name="positions">
 		<item>All</item>
 		<item>C</item>

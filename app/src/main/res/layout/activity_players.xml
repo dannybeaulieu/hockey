@@ -48,7 +48,8 @@
 			android:layout_centerVertical="true"
 			android:layout_margin="10dp"
 			android:textSize="20sp"
-			android:textColor="#FFFFFF"/>
+			android:textColor="#FFFFFF"
+            tools:ignore="RelativeOverlap" />
 
 		<ImageButton
 			android:layout_height="33dp"

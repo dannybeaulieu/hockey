@@ -21,7 +21,8 @@
 			android:layout_marginRight="10dp"
 			android:layout_marginLeft="10dp"
 			android:textStyle="bold"
-			android:textSize="20sp">
+			android:textSize="20sp"
+            tools:ignore="RelativeOverlap">
 
 		</TextView>
 
@@ -89,9 +90,7 @@
 
 	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-        android:layout_below="@id/info"
-        android:layout_toRightOf="@id/condition">
+		android:layout_height="wrap_content">
 
 		<LinearLayout
 			android:layout_width="fill_parent"
