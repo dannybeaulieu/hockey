@@ -1,32 +1,22 @@
 package com.bgood.danny.hockeyliguevirtuelle;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import org.jsoup.nodes.*;
 import java.io.*;
 import org.jsoup.*;
 import org.jsoup.select.*;
 import java.util.*;
-import android.app.*;
-import android.widget.*;
 import android.os.*;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import android.util.*;
 
-/**
- * Created by Danny on 2014-10-15.
- */
-public class WebContentProvider {
+class WebContentProvider {
 	
 	private Document doc = null;
-	private String baseUrl = "http://www.lhvqr.com/saison%202014-2015";
-	private String urlPlayers = "http://www.lhvqr.com/saison%202014-2015/LHVQ2014-15-ProTeamRoster.html";
-	private Context _context;
-	private Global _global;
-	private Handler _handler;
+    private final String urlPlayers = "http://www.lhvqr.com/saison%202014-2015/LHVQ2014-15-ProTeamRoster.html";
+    private final Context _context;
+    private final Global _global;
+    private final Handler _handler;
 	
 	public WebContentProvider(Context context, Global global, Handler handler) {
 		_context = context;
@@ -38,7 +28,8 @@ public class WebContentProvider {
 		if (doc == null) {
 			try {
 				InputStream inputStream = _context.openFileInput("ligue.txt");
-				doc = Jsoup.parse(inputStream, null, baseUrl);
+                String baseUrl = "http://www.lhvqr.com/saison%202014-2015";
+                doc = Jsoup.parse(inputStream, null, baseUrl);
 			}
 			catch (IOException e) {
 				Log.e("Exception", "File write failed: " + e.toString());
@@ -66,8 +57,9 @@ public class WebContentProvider {
 						outputStream.write(response_str.toString().getBytes());
 						outputStream.close();
 					}
-					catch (IOException e)
-					{}
+					catch (IOException ignored)
+					{
+                    }
 					
 					_global.getProgressDialog().dismiss();
 					_handler.sendMessage(_handler.obtainMessage());
@@ -77,10 +69,6 @@ public class WebContentProvider {
 			
 			doc = null;
     }
-	
-	public void ResetFile() {
-		_context.deleteFile("ligue.txt");
-	}
 	
 	public team[] getTeams() {
 		ArrayList<team> teams = new ArrayList<team>();
@@ -107,10 +95,6 @@ public class WebContentProvider {
 		}
 			
 		return teams.toArray(new team[teams.size()]);
-	}
-	
-	public String getContent() {
-		return getDocument().html();
 	}
 	
 	public String getDate() {
@@ -184,8 +168,8 @@ public class WebContentProvider {
 		}
 	}
 	
-	public boolean ligueFileExist() {
-		File ligueFile = _context.getFileStreamPath("ligue.txt");
-		return ligueFile.exists();
+	public boolean leagueFileExist() {
+		File leagueFile = _context.getFileStreamPath("ligue.txt");
+		return leagueFile.exists();
 	}
 }

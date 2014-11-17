@@ -1,5 +1,4 @@
 package com.bgood.danny.hockeyliguevirtuelle.DataModel;
-import java.util.*;
 
 public class team
 {
@@ -11,17 +10,9 @@ public class team
 		_key = key;
 		_name = name;
 	}
-	
-	public void setName(String value) {
-		_name = value;
-	}
-	
+
 	public String getName() {
 		return _name;
-	}
-	
-	public void setKey(String value) {
-		_key = value;
 	}
 	
 	public String getKey() {

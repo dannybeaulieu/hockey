@@ -3,11 +3,11 @@ import java.util.*;
 
 public class ComparePlayerData
 {
-	private String attribut;
+	private String attribute;
 	private String leftValue;
 	private String rightValue;
 
-	public void setRightValue(String rightValue)
+	void setRightValue(String rightValue)
 	{
 		this.rightValue = rightValue;
 	}
@@ -17,7 +17,7 @@ public class ComparePlayerData
 		return rightValue;
 	}
 
-	public void setLeftValue(String leftValue)
+	void setLeftValue(String leftValue)
 	{
 		this.leftValue = leftValue;
 	}
@@ -27,58 +27,58 @@ public class ComparePlayerData
 		return leftValue;
 	}
 
-	public void setAttribut(String attribut)
+	void setAttribute(String attribute)
 	{
-		this.attribut = attribut;
+		this.attribute = attribute;
 	}
 
-	public String getAttribut()
+	public String getAttribute()
 	{
-		return attribut;
+		return attribute;
 	}
 	
 	public static ArrayList<ComparePlayerData> PopulateComparePlayerData(TeamPlayer left, TeamPlayer right) {
 		ArrayList<ComparePlayerData> data = new ArrayList<ComparePlayerData>();
 		
 		ComparePlayerData cData = new ComparePlayerData();
-		cData.setAttribut("Condition");
-		cData.setLeftValue(left.getHealth() + (left.getInjiury().length() == 0 ? "" : "% - " + left.getInjiury()));
-		cData.setRightValue(left.getHealth() + (right.getInjiury().length() == 0 ? "" : "% - " + right.getInjiury()));
+		cData.setAttribute("Condition");
+		cData.setLeftValue(left.getHealth() + (left.getInjury().length() == 0 ? "" : "% - " + left.getInjury()));
+		cData.setRightValue(left.getHealth() + (right.getInjury().length() == 0 ? "" : "% - " + right.getInjury()));
 		data.add(cData);
 		
 		cData = new ComparePlayerData();
-		cData.setAttribut("Position");
+		cData.setAttribute("Position");
 		cData.setLeftValue(left.getPosition());
 		cData.setRightValue(right.getPosition());
 		data.add(cData);
 		
 		cData = new ComparePlayerData();
-		cData.setAttribut("Age");
+		cData.setAttribute("Age");
 		cData.setLeftValue(left.getAge() + " ans");
 		cData.setRightValue(right.getAge() + " ans");
 		data.add(cData);
 
 		cData = new ComparePlayerData();
-		cData.setAttribut("Salary");
+		cData.setAttribute("Salary");
 		cData.setLeftValue(left.getSalary() + "$");
 		cData.setRightValue(right.getSalary() + "$");
 		data.add(cData);
 
 		cData = new ComparePlayerData();
-		cData.setAttribut("Contract");
+		cData.setAttribute("Contract");
 		cData.setLeftValue(left.getContract() + " an(s)");
 		cData.setRightValue(right.getContract() + " an(s)");
 		data.add(cData);
 		
 		cData = new ComparePlayerData();
-		cData.setAttribut("Overall");
+		cData.setAttribute("Overall");
 		cData.setLeftValue(left.getOverall());
 		cData.setRightValue(right.getOverall());
 		data.add(cData);
 		
 		for (String key : left.getAttributes().keySet()) {
 			cData = new ComparePlayerData();
-			cData.setAttribut(key);
+			cData.setAttribute(key);
 			cData.setLeftValue(left.getAttributes().get(key));
 			cData.setRightValue(right.getAttributes().get(key));
 			data.add(cData);

@@ -1,12 +1,11 @@
 package com.bgood.danny.hockeyliguevirtuelle;
-import android.util.*;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import java.util.*;
 
-public class PlayerAttributesMap
+class PlayerAttributesMap
 {
-	private static LinkedHashMap<String, PlayerAttribute> playerAttrs = new LinkedHashMap<String, PlayerAttribute>();
-	private static LinkedHashMap<String, PlayerAttribute> goalerAttrs = new LinkedHashMap<String, PlayerAttribute>();
+	private final static LinkedHashMap<String, PlayerAttribute> playerAttrs = new LinkedHashMap<String, PlayerAttribute>();
+	private final static LinkedHashMap<String, PlayerAttribute> goalerAttrs = new LinkedHashMap<String, PlayerAttribute>();
 
 	public static LinkedHashMap<String, PlayerAttribute> getGoalerAttrs()
 	{
@@ -20,7 +19,7 @@ public class PlayerAttributesMap
 		goalerAttrs.put("HS", new PlayerAttribute("Hand Speed", 64, 67));
 		goalerAttrs.put("RT", new PlayerAttribute("Reaction Time", 67, 70));
 		goalerAttrs.put("PH", new PlayerAttribute("Puck Handling", 70, 73));
-		goalerAttrs.put("PS", new PlayerAttribute("Penalyty Shot", 73, 76));
+		goalerAttrs.put("PS", new PlayerAttribute("Penalty Shot", 73, 76));
 		goalerAttrs.put("EX", new PlayerAttribute("Experience", 76, 79));
 		goalerAttrs.put("LD", new PlayerAttribute("Leadership", 79, 82));
 		goalerAttrs.put("MO", new PlayerAttribute("Morale", 82, 85));
@@ -44,7 +43,7 @@ public class PlayerAttributesMap
 		playerAttrs.put("PA", new PlayerAttribute("Passing", 77, 80));
 		playerAttrs.put("SC", new PlayerAttribute("Scoring", 80, 83));
 		playerAttrs.put("DF", new PlayerAttribute("Defense", 83, 86));
-		playerAttrs.put("PS", new PlayerAttribute("Penality Shot", 86, 89));
+		playerAttrs.put("PS", new PlayerAttribute("Penalty Shot", 86, 89));
 		playerAttrs.put("EX", new PlayerAttribute("Experience", 89, 92));
 		playerAttrs.put("LD", new PlayerAttribute("Leadership", 92, 95));
 		playerAttrs.put("MO", new PlayerAttribute("Morale", 95, 98));

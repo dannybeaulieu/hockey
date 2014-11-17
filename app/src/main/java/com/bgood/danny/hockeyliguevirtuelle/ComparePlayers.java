@@ -14,33 +14,33 @@ public class ComparePlayers extends Activity
 		setContentView(R.layout.compare_players);
 		Global global = ((Global)getApplicationContext());
 		
-		TeamPlayer lplayer = global.getLeftPlayer();	
-		TeamPlayer rplayer = global.getRightPlayer();
+		TeamPlayer leftPlayer = global.getLeftPlayer();
+		TeamPlayer rightPlayer = global.getRightPlayer();
 		
-		((TextView)findViewById(R.id.leftValue)).setText(lplayer.getName().replace(" ", "\n"));
-		((TextView)findViewById(R.id.rightValue)).setText(rplayer.getName().replace(" ", "\n"));
+		((TextView)findViewById(R.id.leftValue)).setText(leftPlayer.getName().replace(" ", "\n"));
+		((TextView)findViewById(R.id.rightValue)).setText(rightPlayer.getName().replace(" ", "\n"));
 		
 		TableLayout tl = (TableLayout)findViewById(R.id.compareTable);
 		int index = 0;
 		
-		for (ComparePlayerData data : ComparePlayerData.PopulateComparePlayerData(lplayer, rplayer)) {
+		for (ComparePlayerData data : ComparePlayerData.PopulateComparePlayerData(leftPlayer, rightPlayer)) {
 			TableRow row = new TableRow(this);
 			
 		    row.setId(10);
 			row.setBackgroundColor(index % 2 == 0 ? Color.WHITE : 0xFFB9D3EE);
 			row.setLayoutParams(new LayoutParams(
 			
-										LayoutParams.FILL_PARENT,
+										LayoutParams.MATCH_PARENT,
 										LayoutParams.WRAP_CONTENT));
 										
-			TextView attribut = new TextView(this);
-			attribut.setId(20);
+			TextView attribute = new TextView(this);
+			attribute.setId(20);
 			LayoutParams params = new LayoutParams();
 			params.weight = (float) 3.0;
 			params.setMargins(5,0,0,0);
-			attribut.setLayoutParams(params);
-			attribut.setText(data.getAttribut());
-			attribut.setTextSize(16);
+			attribute.setLayoutParams(params);
+			attribute.setText(data.getAttribute());
+			attribute.setTextSize(16);
 			
 			TextView leftV = new TextView(this);
 			leftV.setId(30);
@@ -58,7 +58,7 @@ public class ComparePlayers extends Activity
 			rightV.setText(data.getRightValue());
 			rightV.setTextSize(16);
 			
-			row.addView(attribut);
+			row.addView(attribute);
 			row.addView(leftV);
 			row.addView(rightV);
 			

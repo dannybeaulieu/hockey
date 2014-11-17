@@ -2,12 +2,12 @@
     
     <item
         android:id="@+id/leftPlayer"
-        android:title="Select as left player"
+        android:title="@string/selectAsLeft"
 		android:orderInCategory="100"
         android:showAsAction="never" />
 	<item
         android:id="@+id/rightPlayer"
-        android:title="Select as right player and compare"
+        android:title="@string/selectAsRight"
 		android:orderInCategory="200"
         android:showAsAction="never"
 		android:enabled="false"/>

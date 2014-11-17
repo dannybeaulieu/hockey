@@ -1,7 +1,6 @@
 package com.bgood.danny.hockeyliguevirtuelle.DataModel;
 import android.os.*;
 import java.util.*;
-import android.util.*;
 
 public class TeamPlayer implements Parcelable
 {
@@ -9,7 +8,7 @@ public class TeamPlayer implements Parcelable
 		_attributes = new LinkedHashMap<String, String>();
 	}
 	
-	public TeamPlayer(Parcel in) {
+	private TeamPlayer(Parcel in) {
 		String[] data = new String[9];
 		
 		in.readStringArray(data);
@@ -44,7 +43,7 @@ public class TeamPlayer implements Parcelable
 	private String _contract;
 	private String _salary;
 	private Boolean _farm;
-	private LinkedHashMap<String, String> _attributes;
+	private final LinkedHashMap<String, String> _attributes;
 	
 	public LinkedHashMap<String, String> getAttributes() {
 		return _attributes;
@@ -66,7 +65,7 @@ public class TeamPlayer implements Parcelable
 		return _health;
 	}
 	
-	public String getInjiury() {
+	public String getInjury() {
 		return _injury;
 	}
 	
@@ -139,18 +138,18 @@ public class TeamPlayer implements Parcelable
 	}
 
 	@Override
-	public void writeToParcel(Parcel dest, int flags)
+	public void writeToParcel(Parcel destination, int flags)
 	{
-		dest.writeStringArray(new String[] {
-								  _name,
-								  _position,
-								  _overall,
-								  _health,
-								  _injury,
-								  _age,
-								  _contract,
-								  _salary,
-								  _farm.toString()});
-		dest.writeSerializable(_attributes);
+		destination.writeStringArray(new String[]{
+                _name,
+                _position,
+                _overall,
+                _health,
+                _injury,
+                _age,
+                _contract,
+                _salary,
+                _farm.toString()});
+		destination.writeSerializable(_attributes);
 	}
 }

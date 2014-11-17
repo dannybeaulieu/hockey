@@ -1,23 +1,19 @@
 package com.bgood.danny.hockeyliguevirtuelle.Adaptor;
 
 import android.widget.*;
-import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
-import android.content.*;
-import android.view.LayoutInflater;
 import java.util.*;
-import android.*;
+
 import android.view.*;
 import com.bgood.danny.hockeyliguevirtuelle.R;
-import android.util.*;
 
 public class AttributeArrayMapAdapter extends BaseAdapter
 {
-	private final ArrayList data;
+	private final ArrayList<Map.Entry<String, String>> data;
 
 	public AttributeArrayMapAdapter(LinkedHashMap<String, String> map) {
-		data = new ArrayList();
-		data.addAll(map.entrySet());
-	}
+		data = new ArrayList<Map.Entry<String, String>>();
+        data.addAll(map.entrySet());
+    }
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -40,7 +36,7 @@ public class AttributeArrayMapAdapter extends BaseAdapter
 	
 	@Override
 	public Map.Entry<String, String> getItem(int position) {
-		return (Map.Entry)data.get(position);
+		return data.get(position);
 	}
 	
 	@Override
@@ -52,7 +48,6 @@ public class AttributeArrayMapAdapter extends BaseAdapter
 	@Override
 	public long getItemId(int p1)
 	{
-		// TODO: Implement this method
 		return 0;
 	}	
 }

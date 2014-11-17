@@ -23,7 +23,6 @@
 		android:layout_height="match_parent"
 		android:text="@+id/condition"
 		android:textAlignment="center"
-		android:layout_below="@+id/logo"
 		android:padding="5dp"
 		android:width="70dp"
 		android:gravity="center"

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import java.util.*;
@@ -27,24 +26,24 @@ public class PlayerArrayAdapter extends ArrayAdapter<TeamPlayer> {
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
  
 		View rowView = inflater.inflate(R.layout.list_player, parent, false);
-		TextView txname = (TextView) rowView.findViewById(R.id.name);
-		TextView txcondition = (TextView) rowView.findViewById(R.id.condition);
-		TextView txinfo = (TextView) rowView.findViewById(R.id.info);
-		TextView txposition = (TextView) rowView.findViewById(R.id.position);
-		TextView txoverall = (TextView) rowView.findViewById(R.id.overall);
+		TextView viewName = (TextView) rowView.findViewById(R.id.name);
+		TextView viewCondition = (TextView) rowView.findViewById(R.id.condition);
+		TextView viewInfo = (TextView) rowView.findViewById(R.id.info);
+		TextView viewPosition = (TextView) rowView.findViewById(R.id.position);
+		TextView viewOverall = (TextView) rowView.findViewById(R.id.overall);
 		
 		TeamPlayer player = getItem(position);
 		
-		txname.setText(player.getName());
+		viewName.setText(player.getName());
 		
 		if (player.getFarm()) {
-			txname.setText(txname.getText() + " (farm)");
+			viewName.setText(viewName.getText() + " (farm)");
 		}
-		
-		txcondition.setText(player.getHealth() + "%\n" + player.getInjiury());
-		txinfo.setText(player.getInfo());
-		txposition.setText(player.getPosition());
-		txoverall.setText(player.getOverall());
+
+        viewCondition.setText(player.getHealth() + "%\n" + player.getInjury());
+        viewInfo.setText(player.getInfo());
+        viewPosition.setText(player.getPosition());
+        viewOverall.setText(player.getOverall());
 		
  		double con = 0;
 		if (player.getHealth().length() > 0) {
@@ -52,11 +51,11 @@ public class PlayerArrayAdapter extends ArrayAdapter<TeamPlayer> {
 		}
 		
 		if (con == 100.0) {
-			txcondition.setBackgroundColor(0xFF99FFCC);
-		} else if (con < 100.0 && player.getInjiury().length() == 0) {
-			txcondition.setBackgroundColor(0xFFFDFD96);
+            viewCondition.setBackgroundColor(0xFF99FFCC);
+		} else if (con < 100.0 && player.getInjury().length() == 0) {
+            viewCondition.setBackgroundColor(0xFFFDFD96);
 		} else {
-			txcondition.setBackgroundColor(0xFFC23B22);
+            viewCondition.setBackgroundColor(0xFFC23B22);
 		} 
 		
 		if (position % 2 == 0) {

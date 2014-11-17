@@ -1,9 +1,5 @@
 package com.bgood.danny.hockeyliguevirtuelle;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.*;
 import android.content.*;
 import android.app.*;
@@ -12,14 +8,13 @@ import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import android.view.*;
 import android.widget.AdapterView.*;
 import com.bgood.danny.hockeyliguevirtuelle.Adaptor.*;
-import java.io.*;
 import android.preference.*;
 import android.view.ContextMenu.*;
 import java.util.*;
 import android.content.res.*;
 
 public class Players extends Activity {
-	WebContentProvider provider = null;
+	private WebContentProvider provider = null;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +67,13 @@ public class Players extends Activity {
 		ImageButton refresh = (ImageButton)findViewById(R.id.refreshBtn);
 		ImageButton setting = (ImageButton)findViewById(R.id.settingBtn);
 		
-		refresh.setOnClickListener(new OnClickListener() {
+		refresh.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				provider.UpdateContent();
 			}
 		});
 		
-		setting.setOnClickListener(new OnClickListener() {
+		setting.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent i = new Intent(v.getContext(), UserSettingActivity.class);
 				startActivity(i);
@@ -89,7 +84,7 @@ public class Players extends Activity {
 		ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, res.getStringArray(R.array.positions));
 		((Spinner)findViewById(R.id.activityplayersPosition)).setAdapter(adapter);
 		
-		if (!provider.ligueFileExist()) {
+		if (!provider.leagueFileExist()) {
 			provider.UpdateContent();
 		}	
 		else {
@@ -175,7 +170,7 @@ public class Players extends Activity {
 	private int getItemPosition(ArrayAdapter<team> adapter, String name) {
 		int index = 0;
 		for (int i = 0; i < adapter.getCount(); i++) {
-			if (((team)adapter.getItem(i)).getName().equals(name)) {
+			if (adapter.getItem(i).getName().equals(name)) {
 				index = i;
 				break;
 			}
