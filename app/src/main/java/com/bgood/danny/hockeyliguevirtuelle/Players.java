@@ -16,6 +16,7 @@ import java.io.*;
 import android.preference.*;
 import android.view.ContextMenu.*;
 import java.util.*;
+import android.content.res.*;
 
 public class Players extends Activity {
 	WebContentProvider provider = null;
@@ -83,7 +84,11 @@ public class Players extends Activity {
 				startActivity(i);
 			}
 		});		
-	
+		
+		Resources res = getResources();
+		ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, res.getStringArray(R.array.positions));
+		((Spinner)findViewById(R.id.activityplayersPosition)).setAdapter(adapter);
+		
 		if (!provider.ligueFileExist()) {
 			provider.UpdateContent();
 		}	

@@ -108,7 +108,8 @@
 			android:layout_toRightOf="@id/condition"
 			android:layout_below="@id/line"
 			android:layout_marginTop="5dp"
-			android:id="@+id/lstAttrs">
+			android:id="@+id/lstAttrs"
+			android:layout_marginLeft="5dp">
 
 		</ListView>
 

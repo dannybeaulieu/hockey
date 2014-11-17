@@ -37,6 +37,7 @@ public class ComparePlayers extends Activity
 			attribut.setId(20);
 			LayoutParams params = new LayoutParams();
 			params.weight = (float) 3.0;
+			params.setMargins(5,0,0,0);
 			attribut.setLayoutParams(params);
 			attribut.setText(data.getAttribut());
 			attribut.setTextSize(16);
