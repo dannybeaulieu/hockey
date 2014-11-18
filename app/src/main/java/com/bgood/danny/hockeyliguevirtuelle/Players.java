@@ -30,6 +30,17 @@ public class Players extends Activity {
 			}
 		};
 		
+		Button menuPlayer = (Button)findViewById(R.id.menuPlayerBack);
+
+		menuPlayer.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v)
+				{
+					Intent intent = new Intent(v.getContext(), Main.class);
+					startActivity(intent);
+				}
+			});
+		
 		provider = new WebContentProvider(getBaseContext(), global, mHandler);
 		Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
 		ListView playerList = (ListView)findViewById(R.id.activityplayersList);
@@ -47,10 +58,7 @@ public class Players extends Activity {
 		registerForContextMenu(playerList);
 		
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
-					Toast.makeText(getBaseContext(), arg0.getSelectedItem().toString(),
-								   Toast.LENGTH_LONG).show();         
-								   
+				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {	   
 					team selectedTeam = (team)(arg0.getSelectedItem());
 					ListView playerList = (ListView)findViewById(R.id.activityplayersList);
 				

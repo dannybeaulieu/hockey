@@ -40,9 +40,10 @@
 
 		</LinearLayout>
 
-		<TextView
+		<Button
 			android:layout_height="wrap_content"
-			android:text="@string/app_name"
+			android:text="@string/menuPlayerBack"
+			android:id="@+id/menuPlayerBack"
 			android:layout_width="wrap_content"
 			android:layout_centerInParent="false"
 			android:layout_centerVertical="true"
