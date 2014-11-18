@@ -40,17 +40,25 @@
 
 		</LinearLayout>
 
-		<Button
-			android:layout_height="wrap_content"
+		<ImageButton
+			android:layout_height="30dp"
 			android:text="@string/menuPlayerBack"
 			android:id="@+id/menuPlayerBack"
-			android:layout_width="wrap_content"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="30dp"
 			android:layout_centerInParent="false"
 			android:layout_centerVertical="true"
 			android:layout_margin="10dp"
-			android:textSize="20sp"
-			android:textColor="#FFFFFF"
-            tools:ignore="RelativeOverlap" />
+			tools:ignore="RelativeOverlap"
+			android:src="@drawable/left_arrow"
+			android:scaleType="centerCrop"/>
+
+		<ImageView
+			android:layout_height="50dp"
+			android:layout_width="50dp"
+			android:src="@drawable/hockeyplayer_white"
+			android:layout_toRightOf="@id/menuPlayerBack"
+			android:layout_centerVertical="true"/>
 
 		<ImageButton
 			android:layout_height="33dp"
@@ -65,7 +73,7 @@
 			android:id="@+id/refreshBtn"
 			android:layout_centerVertical="true"
 			android:layout_marginRight="10dp"
-            android:contentDescription="@string/action_update" />
+			android:contentDescription="@string/action_update"/>
 
 		<ImageButton
 			android:layout_height="27dp"
@@ -79,7 +87,7 @@
 			android:src="@drawable/setting"
 			android:layout_centerVertical="true"
 			android:layout_marginRight="10dp"
-            android:contentDescription="@string/action_setting" />
+			android:contentDescription="@string/action_setting"/>
 
 	</RelativeLayout>
 

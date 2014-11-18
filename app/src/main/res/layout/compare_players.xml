@@ -1,40 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:id="@+id/compareTable">
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_height="match_parent"
+	android:layout_width="match_parent">
 
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+	<RelativeLayout
+		android:layout_height="70dp"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:id="@+id/actionbar"
+		android:background="#125BBE">
 
-        <TextView
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"
-            android:layout_weight="3.0"
-            android:id="@+id/attribut"
-            android:background="#125BBE"
-            android:textSize="16sp"/>
+		<ImageButton
+			android:layout_height="30dp"
+			android:text="@string/menuPlayerBack"
+			android:id="@+id/menuPlayerBack"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="30dp"
+			android:layout_centerInParent="false"
+			android:layout_centerVertical="true"
+			android:layout_margin="10dp"
+			tools:ignore="RelativeOverlap"
+			android:src="@drawable/left_arrow"
+			android:scaleType="centerCrop"/>
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_weight="3.0"
-            android:id="@+id/leftValue"
-            android:background="#125BBE"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"/>
+		<ImageView
+			android:layout_height="50dp"
+			android:layout_width="50dp"
+			android:src="@drawable/hockeyplayer_white"
+			android:layout_toRightOf="@id/menuPlayerBack"
+			android:layout_centerVertical="true"/>
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_weight="3.0"
-            android:id="@+id/rightValue"
-            android:background="#125BBE"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"/>
+	</RelativeLayout>
 
-    </TableRow>
+	<RelativeLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:layout_below="@+id/actionbar">
 
-</TableLayout>
+		<ScrollView
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent">
+
+			<TableLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:id="@+id/compareTable">
+
+				<TableRow
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent">
+
+					<TextView
+						android:layout_height="match_parent"
+						android:layout_width="wrap_content"
+						android:layout_weight="3.0"
+						android:id="@+id/attribut"
+						android:background="#B9D3EE"
+						android:textSize="16sp"/>
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:layout_weight="3.0"
+						android:id="@+id/leftValue"
+						android:background="#B9D3EE"
+						android:textSize="20sp"
+						android:textStyle="bold"/>
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:layout_weight="3.0"
+						android:id="@+id/rightValue"
+						android:background="#B9D3EE"
+						android:textSize="20sp"
+						android:textStyle="bold"/>
+
+				</TableRow>
+
+			</TableLayout>
+
+		</ScrollView>
+
+	</RelativeLayout>
+
+</RelativeLayout>
+

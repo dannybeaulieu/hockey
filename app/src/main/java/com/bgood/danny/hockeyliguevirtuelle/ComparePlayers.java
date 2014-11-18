@@ -5,6 +5,8 @@ import android.widget.*;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import android.graphics.*;
 import android.widget.TableRow.*;
+import android.view.*;
+import android.content.*;
 
 public class ComparePlayers extends Activity
 {
@@ -13,6 +15,17 @@ public class ComparePlayers extends Activity
         super.onCreate(savedInstanceState);
 		setContentView(R.layout.compare_players);
 		Global global = ((Global)getApplicationContext());
+		
+		ImageButton menuPlayer = (ImageButton)findViewById(R.id.menuPlayerBack);
+
+		menuPlayer.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v)
+				{
+					Intent intent = new Intent(v.getContext(), Players.class);
+					startActivity(intent);
+				}
+			});
 		
 		TeamPlayer leftPlayer = global.getLeftPlayer();
 		TeamPlayer rightPlayer = global.getRightPlayer();

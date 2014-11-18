@@ -30,7 +30,7 @@ public class Players extends Activity {
 			}
 		};
 		
-		Button menuPlayer = (Button)findViewById(R.id.menuPlayerBack);
+		ImageButton menuPlayer = (ImageButton)findViewById(R.id.menuPlayerBack);
 
 		menuPlayer.setOnClickListener(new OnClickListener() {
 				@Override

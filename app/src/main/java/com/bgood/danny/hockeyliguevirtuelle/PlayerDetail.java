@@ -4,6 +4,9 @@ import android.os.*;
 import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
 import android.widget.*;
 import com.bgood.danny.hockeyliguevirtuelle.Adaptor.*;
+import android.view.View.*;
+import android.view.*;
+import android.content.*;
 
 public class PlayerDetail extends Activity {
 	
@@ -11,6 +14,17 @@ public class PlayerDetail extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.playerdetail);
+		
+		ImageButton menuPlayer = (ImageButton)findViewById(R.id.menuPlayerBack);
+
+		menuPlayer.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v)
+				{
+					Intent intent = new Intent(v.getContext(), Players.class);
+					startActivity(intent);
+				}
+			});
 		
 		Bundle bundle = getIntent().getExtras();
 		TeamPlayer player = bundle.getParcelable("com.bgood.danny.hockeyliguevirtuelle");

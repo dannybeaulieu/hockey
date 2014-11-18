@@ -24,16 +24,22 @@
 
 	</RelativeLayout>
 
-	<Button
-		android:layout_height="wrap_content"
+	<ImageButton
+		android:layout_height="100dp"
 		android:text="@string/menuPlayer"
-		android:layout_width="match_parent"
+		android:layout_width="100dp"
 		android:layout_below="@id/actionbar"
+		style="?android:attr/buttonBarButtonStyle"
 		android:background="#B9D3EE"
 		android:layout_marginTop="10dp"
 		android:id="@+id/menuPlayer"
 		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"/>
+		android:layout_marginRight="10dp"
+		android:src="@drawable/hockeyplayer"
+		android:scaleX="1"
+		android:scaleY="1"
+		android:scaleType="centerCrop"
+		android:layout_centerHorizontal="true"/>
 
 	<RelativeLayout
 		android:layout_height="50dp"

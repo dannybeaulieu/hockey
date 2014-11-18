@@ -6,11 +6,41 @@
 	android:layout_height="fill_parent"
 	android:orientation="vertical"
 	tools:context=".PlayerDetail">
+	
+	<RelativeLayout
+		android:layout_height="70dp"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:id="@+id/actionbar"
+		android:background="#125BBE">
+
+		<ImageButton
+			android:layout_height="30dp"
+			android:text="@string/menuPlayerBack"
+			android:id="@+id/menuPlayerBack"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="30dp"
+			android:layout_centerInParent="false"
+			android:layout_centerVertical="true"
+			android:layout_margin="10dp"
+			tools:ignore="RelativeOverlap"
+			android:src="@drawable/left_arrow"
+			android:scaleType="centerCrop"/>
+
+		<ImageView
+			android:layout_height="50dp"
+			android:layout_width="50dp"
+			android:src="@drawable/hockeyplayer_white"
+			android:layout_toRightOf="@id/menuPlayerBack"
+			android:layout_centerVertical="true"/>
+
+	</RelativeLayout>
 
 	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="65dp"
-		android:background="#B9D3EE">
+		android:background="#B9D3EE"
+		android:layout_below="@+id/actionBar">
 
 		<TextView
 			android:id="@+id/name"

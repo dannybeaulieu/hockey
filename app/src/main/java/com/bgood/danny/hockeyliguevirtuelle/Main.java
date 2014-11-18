@@ -13,7 +13,7 @@ public class Main extends Activity {
         super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		Button menuPlayer = (Button)findViewById(R.id.menuPlayer);
+		ImageButton menuPlayer = (ImageButton)findViewById(R.id.menuPlayer);
 		
 		menuPlayer.setOnClickListener(new OnClickListener() {
 				@Override
