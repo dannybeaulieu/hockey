@@ -34,7 +34,7 @@ public class UserSettingActivity extends PreferenceActivity
                 teams.add(t.getName());
             }
             prefs.setDefaultValue(teams.get(0));
-            prefs.setEntries(new String[teams.size()]);
+            prefs.setEntries(teams.toArray(new String[teams.size()]));
             prefs.setEntryValues(teams.toArray(new String[teams.size()]));
             prefs.setSummary(prefs.getEntry());
         }
