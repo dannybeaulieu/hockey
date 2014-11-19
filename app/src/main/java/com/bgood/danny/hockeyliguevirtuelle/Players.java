@@ -15,6 +15,8 @@ import android.content.res.*;
 
 public class Players extends Activity {
 	private WebContentProvider provider = null;
+	private PlayerArrayAdapter dataAdapter;
+	private ArrayList<TeamPlayer> players;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +63,9 @@ public class Players extends Activity {
 				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {	   
 					team selectedTeam = (team)(arg0.getSelectedItem());
 					ListView playerList = (ListView)findViewById(R.id.activityplayersList);
-				
-					PlayerArrayAdapter dataAdapter = new PlayerArrayAdapter(Players.this, 
-																			provider.getTeamPlayers(selectedTeam.getKey(), selectedTeam.getFarmName()));						
-					dataAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+					
+					players = provider.getTeamPlayers(selectedTeam.getKey(), selectedTeam.getFarmName());
+					dataAdapter = new PlayerArrayAdapter(Players.this, players);									
 					playerList.setAdapter(dataAdapter);
 				}
 				public void onNothingSelected(AdapterView<?> arg0) {
@@ -90,8 +91,18 @@ public class Players extends Activity {
 		
 		Resources res = getResources();
 		ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, res.getStringArray(R.array.positions));
-		((Spinner)findViewById(R.id.activityplayersPosition)).setAdapter(adapter);
+		Spinner pos = ((Spinner)findViewById(R.id.activityplayersPosition));
+		pos.setAdapter(adapter);
 		
+		pos.setOnItemSelectedListener(new OnItemSelectedListener() {
+				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {	   
+					dataAdapter.getFilter().filter((String)arg0.getSelectedItem());
+				}
+				public void onNothingSelected(AdapterView<?> arg0) {
+					// TODO Auto-generated method stub                  
+				}
+			});
+			
 		if (!provider.leagueFileExist()) {
 			provider.UpdateContent();
 		}	
