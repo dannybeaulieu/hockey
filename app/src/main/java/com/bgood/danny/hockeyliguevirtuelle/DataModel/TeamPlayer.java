@@ -12,7 +12,8 @@ public class TeamPlayer implements Parcelable
 		String[] data = new String[9];
 		
 		in.readStringArray(data);
-		_attributes = (LinkedHashMap<String, String>)(in.readSerializable());
+        //noinspection unchecked
+        _attributes = (LinkedHashMap<String, String>) in.readSerializable();
 		_name = data[0];
 		_position = data[1];
 		_overall = data[2];

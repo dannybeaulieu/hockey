@@ -27,7 +27,7 @@ class WebContentProvider {
 	private Document getDocument() {
 		if (doc == null) {
 			try {
-				InputStream inputStream = _context.openFileInput("ligue.txt");
+				InputStream inputStream = _context.openFileInput("league.txt");
                 String baseUrl = "http://www.lhvqr.com/saison%202014-2015";
                 doc = Jsoup.parse(inputStream, null, baseUrl);
 			}
@@ -53,7 +53,7 @@ class WebContentProvider {
 					
 						response_str.append(doc.html());
 					
-						FileOutputStream outputStream = _context.openFileOutput("ligue.txt", Context.MODE_PRIVATE);
+						FileOutputStream outputStream = _context.openFileOutput("league.txt", Context.MODE_PRIVATE);
 						outputStream.write(response_str.toString().getBytes());
 						outputStream.close();
 					}
@@ -76,23 +76,20 @@ class WebContentProvider {
 		Elements divs = getDocument().select("div[id*=\"STHS_JS_Team_\"]");
 		Boolean newTeam = true;
 		team t = null;
-		
-		ListIterator divIterator = divs.listIterator();
-	    while (divIterator.hasNext()) {
-			Element teamElement = ((Element)divIterator.next());
-			
-			if (newTeam) {
-				String attrValue = teamElement.attr("id");
-				t = new team(attrValue, attrValue.replace("STHS_JS_Team_",""));
-				newTeam = false;
-			}
-			else {
-				newTeam = true;
-				String attrValue = teamElement.attr("id");
-				t.setFarmName(attrValue);
-				teams.add(t);
-			}
-		}
+
+        for (Element teamElement : divs) {
+
+            if (newTeam) {
+                String attrValue = teamElement.attr("id");
+                t = new team(attrValue, attrValue.replace("STHS_JS_Team_", ""));
+                newTeam = false;
+            } else {
+                newTeam = true;
+                String attrValue = teamElement.attr("id");
+                t.setFarmName(attrValue);
+                teams.add(t);
+            }
+        }
 			
 		return teams.toArray(new team[teams.size()]);
 	}
@@ -117,45 +114,42 @@ class WebContentProvider {
 		String[] line = (html).split("\n");
 		boolean isGoalies = false;
 
-		for (int i=0; i < line.length; i++) {
-			if (!line[i].trim().startsWith("<") &&
-			    !line[i].trim().startsWith("Player") &&
-				!line[i].trim().startsWith("-")) {
+        for (String aLine : line) {
+            if (!aLine.trim().startsWith("<") &&
+                    !aLine.trim().startsWith("Player") &&
+                    !aLine.trim().startsWith("-")) {
 
-				TeamPlayer p = new TeamPlayer();
-				if (line[i].trim().startsWith("Goalie")) {
-					isGoalies = true;
-				}
-				else {
-					p.setName(line[i].substring(0,30).trim());
-					if (isGoalies) {
-						p.setPosition(line[i].substring(30,33).trim());
-						p.setOverall(line[i].substring(84,87).trim());
-						p.setHealth(line[i].substring(33,39).trim().replace(",","."));
-						p.setInjury(line[i].substring(40,43).trim());
-						p.setAge(line[i].substring(94,97).trim());
-						int pos = line[i].lastIndexOf("$");
-						p.setSalary(line[i].substring(100,pos).trim().replace("&nbsp;",","));
-						p.setContract(line[i].substring(pos + 2,pos + 3).trim());
-						SetPlayerAttributes(line[i], p, PlayerAttributesMap.getGoalerAttrs());
-					}
-					else
-					{
-						p.setPosition(line[i].substring(30,40).trim());
-						p.setOverall(line[i].substring(98,100).trim());
-						p.setHealth(line[i].substring(40,46).trim().replace(",","."));
-						p.setInjury(line[i].substring(47,50).trim());
-						p.setAge(line[i].substring(107,110).trim());
-						int pos = line[i].lastIndexOf("$");
-						p.setSalary(line[i].substring(113,pos).trim().replace("&nbsp;",","));
-						p.setContract(line[i].substring(pos + 2,pos + 3).trim());
-						SetPlayerAttributes(line[i], p, PlayerAttributesMap.getPlayerAttrs());
-					}
-					p.setFarm(farm);
-					players.add(p);
-				}
-			}
-		}
+                TeamPlayer p = new TeamPlayer();
+                if (aLine.trim().startsWith("Goalie")) {
+                    isGoalies = true;
+                } else {
+                    p.setName(aLine.substring(0, 30).trim());
+                    if (isGoalies) {
+                        p.setPosition(aLine.substring(30, 33).trim());
+                        p.setOverall(aLine.substring(84, 87).trim());
+                        p.setHealth(aLine.substring(33, 39).trim().replace(",", "."));
+                        p.setInjury(aLine.substring(40, 43).trim());
+                        p.setAge(aLine.substring(94, 97).trim());
+                        int pos = aLine.lastIndexOf("$");
+                        p.setSalary(aLine.substring(100, pos).trim().replace("&nbsp;", ","));
+                        p.setContract(aLine.substring(pos + 2, pos + 3).trim());
+                        SetPlayerAttributes(aLine, p, PlayerAttributesMap.getGoalerAttrs());
+                    } else {
+                        p.setPosition(aLine.substring(30, 40).trim());
+                        p.setOverall(aLine.substring(98, 100).trim());
+                        p.setHealth(aLine.substring(40, 46).trim().replace(",", "."));
+                        p.setInjury(aLine.substring(47, 50).trim());
+                        p.setAge(aLine.substring(107, 110).trim());
+                        int pos = aLine.lastIndexOf("$");
+                        p.setSalary(aLine.substring(113, pos).trim().replace("&nbsp;", ","));
+                        p.setContract(aLine.substring(pos + 2, pos + 3).trim());
+                        SetPlayerAttributes(aLine, p, PlayerAttributesMap.getPlayerAttrs());
+                    }
+                    p.setFarm(farm);
+                    players.add(p);
+                }
+            }
+        }
 	}
 	
 	private void SetPlayerAttributes(String line, TeamPlayer player, LinkedHashMap<String, PlayerAttribute> attrs) {
@@ -169,7 +163,7 @@ class WebContentProvider {
 	}
 	
 	public boolean leagueFileExist() {
-		File leagueFile = _context.getFileStreamPath("ligue.txt");
+		File leagueFile = _context.getFileStreamPath("league.txt");
 		return leagueFile.exists();
 	}
 }

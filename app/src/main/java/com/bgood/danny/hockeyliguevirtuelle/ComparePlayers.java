@@ -18,7 +18,7 @@ public class ComparePlayers extends Activity
 		
 		ImageButton menuPlayer = (ImageButton)findViewById(R.id.menuPlayerBack);
 
-		menuPlayer.setOnClickListener(new OnClickListener() {
+		menuPlayer.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v)
 				{

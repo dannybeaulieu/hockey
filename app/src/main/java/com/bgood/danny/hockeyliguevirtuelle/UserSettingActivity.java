@@ -1,40 +1,25 @@
 package com.bgood.danny.hockeyliguevirtuelle;
 import android.preference.*;
 import android.os.*;
-import com.bgood.danny.hockeyliguevirtuelle.DataModel.*;
-import java.util.*;
 
 public class UserSettingActivity extends PreferenceActivity
-{	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		addPreferencesFromResource(R.xml.settings);
-		
-		final ListPreference prefs = (ListPreference)findPreference("prefDefaultTeam");
-		prefs.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-			@Override
-			public boolean onPreferenceChange(Preference preference, Object newValue) {
-				preference.setSummary((String)newValue);
-				
-				return true;
-			}        
-		});
-			
-		setListPreference(prefs);
-	}
-	
-	private void setListPreference(ListPreference prefs) {
-		WebContentProvider provider = new WebContentProvider(this, null, null);
-		ArrayList<String> teams = new ArrayList<String>();
-		
-		for (team t : provider.getTeams()) {
-			teams.add(t.getName());
-		}
-		prefs.setDefaultValue(teams.get(0));		
-		prefs.setEntries(teams.toArray(new String[teams.size()]));
-		prefs.setEntryValues(teams.toArray(new String[teams.size()]));
-		prefs.setSummary(prefs.getEntry());
-	}
+{
+   public static class Prefs1Fragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            PreferenceManager.setDefaultValues(getActivity(),
+                    R.xml.settings, false);
+
+            // Load the preferences from an XML resource
+            addPreferencesFromResource(R.xml.settings);
+        }
+
+        @Override
+        public boolean onPreferenceChange(Preference preference, Object newValue) {
+            preference.setSummary((String) newValue);
+            return true;
+        }
+    }
 }

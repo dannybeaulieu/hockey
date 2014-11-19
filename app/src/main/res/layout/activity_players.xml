@@ -51,14 +51,16 @@
 			android:layout_margin="10dp"
 			tools:ignore="RelativeOverlap"
 			android:src="@drawable/left_arrow"
-			android:scaleType="centerCrop"/>
+			android:scaleType="centerCrop"
+            android:contentDescription="@string/back" />
 
 		<ImageView
 			android:layout_height="50dp"
 			android:layout_width="50dp"
 			android:src="@drawable/hockeyplayer_white"
-			android:layout_toRightOf="@id/menuPlayerBack"
-			android:layout_centerVertical="true"/>
+			android:layout_toEndOf="@id/menuPlayerBack"
+			android:layout_centerVertical="true"
+            android:contentDescription="@string/hockeyPlayer" />
 
 		<ImageButton
 			android:layout_height="33dp"
@@ -69,10 +71,10 @@
 			android:scaleY="1"
 			android:scaleType="fitCenter"
 			android:adjustViewBounds="true"
-			android:layout_toLeftOf="@+id/settingBtn"
+			android:layout_toStartOf="@+id/settingBtn"
 			android:id="@+id/refreshBtn"
 			android:layout_centerVertical="true"
-			android:layout_marginRight="10dp"
+			android:layout_marginEnd="10dp"
 			android:contentDescription="@string/action_update"/>
 
 		<ImageButton
@@ -86,7 +88,7 @@
 			android:id="@+id/settingBtn"
 			android:src="@drawable/setting"
 			android:layout_centerVertical="true"
-			android:layout_marginRight="10dp"
+			android:layout_marginEnd="10dp"
 			android:contentDescription="@string/action_setting"/>
 
 	</RelativeLayout>
@@ -117,7 +119,7 @@
 			android:layout_width="wrap_content"
 			android:background="#FCFCFC"
 			android:layout_margin="5dp"
-			android:layout_alignParentRight="true"
+			android:layout_alignParentEnd="true"
 			android:id="@+id/activityplayersPositionLayout">
 
 			<Spinner
@@ -126,7 +128,7 @@
 				android:id="@+id/activityplayersPosition"
 				style="@style/teamSpinner"
 				android:gravity="center"
-				android:layout_gravity="right"/>
+				android:layout_gravity="end"/>
 
 		</LinearLayout>
 
@@ -137,7 +139,7 @@
 			android:textColor="#FFFFFF"
 			android:textSize="20sp"
 			android:layout_centerVertical="true"
-			android:layout_toLeftOf="@+id/activityplayersPositionLayout"/>
+			android:layout_toStartOf="@+id/activityplayersPositionLayout"/>
 
 	</RelativeLayout>
 
