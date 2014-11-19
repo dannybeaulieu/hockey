@@ -4,6 +4,10 @@ import android.os.*;
 
 public class UserSettingActivity extends PreferenceActivity
 {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
    public static class Prefs1Fragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
         @Override
         public void onCreate(Bundle savedInstanceState) {
