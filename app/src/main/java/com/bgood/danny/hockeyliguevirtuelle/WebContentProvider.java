@@ -70,18 +70,18 @@ class WebContentProvider {
 			doc = null;
     }
 	
-	public team[] getTeams() {
-		ArrayList<team> teams = new ArrayList<team>();
+	public Team[] getTeams() {
+		ArrayList<Team> teams = new ArrayList<Team>();
 		
 		Elements divs = getDocument().select("div[id*=\"STHS_JS_Team_\"]");
 		Boolean newTeam = true;
-		team t = null;
+		Team t = null;
 
         for (Element teamElement : divs) {
 
             if (newTeam) {
                 String attrValue = teamElement.attr("id");
-                t = new team(attrValue, attrValue.replace("STHS_JS_Team_", ""));
+                t = new Team(attrValue, attrValue.replace("STHS_JS_Team_", ""));
                 newTeam = false;
             } else {
                 newTeam = true;
@@ -91,7 +91,7 @@ class WebContentProvider {
             }
         }
 			
-		return teams.toArray(new team[teams.size()]);
+		return teams.toArray(new Team[teams.size()]);
 	}
 	
 	public String getDate() {

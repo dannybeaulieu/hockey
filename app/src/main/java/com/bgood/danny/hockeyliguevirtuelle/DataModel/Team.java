@@ -1,12 +1,12 @@
 package com.bgood.danny.hockeyliguevirtuelle.DataModel;
 
-public class team
+public class Team
 {
 	private String _name = "";
 	private String _key = "";
 	private String _farmName = "";
 	
-	public team(String key, String name) {
+	public Team(String key, String name) {
 		_key = key;
 		_name = name;
 	}

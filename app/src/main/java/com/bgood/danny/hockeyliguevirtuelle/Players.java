@@ -62,7 +62,7 @@ public class Players extends Activity {
 		
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {	   
-					team selectedTeam = (team)(arg0.getSelectedItem());
+					Team selectedTeam = (Team)(arg0.getSelectedItem());
 					ListView playerList = (ListView)findViewById(R.id.activityplayersList);
 					
 					players = provider.getTeamPlayers(selectedTeam.getKey(), selectedTeam.getFarmName());
@@ -141,7 +141,7 @@ public class Players extends Activity {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 			Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
 			
-			team selTeam = (team) spinner.getSelectedItem();
+			Team selTeam = (Team) spinner.getSelectedItem();
 			ArrayList<TeamPlayer> players = provider.getTeamPlayers(selTeam.getKey(), selTeam.getFarmName());
 			
 			Global global = ((Global)getApplicationContext());
@@ -152,7 +152,7 @@ public class Players extends Activity {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 			Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
 
-			team selTeam = (team) spinner.getSelectedItem();
+			Team selTeam = (Team) spinner.getSelectedItem();
 			ArrayList<TeamPlayer> players = provider.getTeamPlayers(selTeam.getKey(), selTeam.getFarmName());
 
 			Global global = ((Global)getApplicationContext());
@@ -179,7 +179,7 @@ public class Players extends Activity {
 		TextView date = (TextView)findViewById(R.id.activityplayersDate);
 		date.setText(provider.getDate());
 		Spinner teamSpinner = (Spinner)findViewById(R.id.activityplayersSpinner1);
-		ArrayAdapter<team> dataAdapter = new ArrayAdapter<team>(this,
+		ArrayAdapter<Team> dataAdapter = new ArrayAdapter<Team>(this,
 																R.layout.spinner_team_item, 
 																provider.getTeams());
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -189,7 +189,7 @@ public class Players extends Activity {
 		teamSpinner.setSelection(getItemPosition(dataAdapter, prefs.getString("prefDefaultTeam", "default choice")), true);
 	}
 	
-	private int getItemPosition(ArrayAdapter<team> adapter, String name) {
+	private int getItemPosition(ArrayAdapter<Team> adapter, String name) {
 		int index = 0;
 		for (int i = 0; i < adapter.getCount(); i++) {
 			if (adapter.getItem(i).getName().equals(name)) {
