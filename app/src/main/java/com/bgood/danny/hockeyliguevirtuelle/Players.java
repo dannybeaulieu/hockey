@@ -95,8 +95,13 @@ public class Players extends Activity {
 		pos.setAdapter(adapter);
 		
 		pos.setOnItemSelectedListener(new OnItemSelectedListener() {
-				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {	   
-					dataAdapter.getFilter().filter((String)arg0.getSelectedItem());
+				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
+                    if (dataAdapter == null) {
+                        Toast.makeText(getBaseContext(), "dataAdapter null", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        dataAdapter.getFilter().filter((String) arg0.getSelectedItem());
+                    }
 				}
 				public void onNothingSelected(AdapterView<?> arg0) {
 					// TODO Auto-generated method stub                  
