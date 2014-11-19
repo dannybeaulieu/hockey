@@ -53,7 +53,9 @@
 			android:layout_marginLeft="10dp"
 			android:textStyle="bold"
 			android:textSize="20sp"
-            tools:ignore="RelativeOverlap">
+            tools:ignore="RelativeOverlap"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
 
 		</TextView>
 

@@ -14,7 +14,8 @@ import java.util.*;
 import android.content.res.*;
 
 public class Players extends Activity {
-	private WebContentProvider provider = null;
+    public static final String Goaler = "G";
+    private WebContentProvider provider = null;
 	private PlayerArrayAdapter dataAdapter;
 	private ArrayList<TeamPlayer> players;
 	
@@ -23,7 +24,7 @@ public class Players extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_players);
 		Global global = ((Global)getApplicationContext());
-		global.setPlayersActivity(Players.this);
+		global.setPlayersActivity(this);
 		
 		Handler mHandler = new Handler() {
 			@Override
@@ -96,10 +97,7 @@ public class Players extends Activity {
 		
 		pos.setOnItemSelectedListener(new OnItemSelectedListener() {
 				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
-                    if (dataAdapter == null) {
-                        Toast.makeText(getBaseContext(), "dataAdapter null", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    if (dataAdapter != null) {
                         dataAdapter.getFilter().filter((String) arg0.getSelectedItem());
                     }
 				}
@@ -159,10 +157,10 @@ public class Players extends Activity {
 
 			Global global = ((Global)getApplicationContext());
 			
-			if ((global.getLeftPlayer().getPosition().equals("G") &&
-				players.get(info.position).getPosition().equals("G")) ||
-				(!global.getLeftPlayer().getPosition().equals("G") &&
-				!players.get(info.position).getPosition().equals("G"))) {
+			if ((global.getLeftPlayer().getPosition().equals(Goaler) &&
+				players.get(info.position).getPosition().equals(Goaler)) ||
+				(!global.getLeftPlayer().getPosition().equals(Goaler) &&
+				!players.get(info.position).getPosition().equals(Goaler))) {
 				
 				global.setRightPlayer(players.get(info.position));
 
