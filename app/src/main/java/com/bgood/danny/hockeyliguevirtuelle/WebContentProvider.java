@@ -70,7 +70,7 @@ class WebContentProvider {
 			doc = null;
     }
 	
-	public Team[] getTeams() {
+	public ArrayList<Team> getTeams() {
 		ArrayList<Team> teams = new ArrayList<Team>();
 		
 		Elements divs = getDocument().select("div[id*=\"STHS_JS_Team_\"]");
@@ -91,7 +91,7 @@ class WebContentProvider {
             }
         }
 			
-		return teams.toArray(new Team[teams.size()]);
+		return teams;
 	}
 	
 	public String getDate() {

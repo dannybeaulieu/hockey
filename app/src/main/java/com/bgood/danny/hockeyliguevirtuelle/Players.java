@@ -15,9 +15,7 @@ import android.content.res.*;
 
 public class Players extends Activity {
     public static final String Goaler = "G";
-    private WebContentProvider provider = null;
 	private PlayerArrayAdapter dataAdapter;
-	private ArrayList<TeamPlayer> players;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +31,8 @@ public class Players extends Activity {
 			}
 		};
 		
+		Cache.provider = new WebContentProvider(getBaseContext(), global, mHandler);
+		
 		ImageButton menuPlayer = (ImageButton)findViewById(R.id.menuPlayerBack);
 
 		menuPlayer.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +44,6 @@ public class Players extends Activity {
 				}
 			});
 		
-		provider = new WebContentProvider(getBaseContext(), global, mHandler);
 		Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
 		ListView playerList = (ListView)findViewById(R.id.activityplayersList);
 		
@@ -62,11 +61,14 @@ public class Players extends Activity {
 		
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {	   
-					Team selectedTeam = (Team)(arg0.getSelectedItem());
+					Team selTeam = (Team)(arg0.getSelectedItem());
 					ListView playerList = (ListView)findViewById(R.id.activityplayersList);
 					
-					players = provider.getTeamPlayers(selectedTeam.getKey(), selectedTeam.getFarmName());
-					dataAdapter = new PlayerArrayAdapter(Players.this, players);									
+					Cache.currentProTeam = selTeam.getKey();
+					Cache.currentFarmTeam = selTeam.getFarmName();
+					Cache.resetPlayers();
+					
+					dataAdapter = new PlayerArrayAdapter(Players.this, Cache.getPlayers());									
 					playerList.setAdapter(dataAdapter);
 				}
 				public void onNothingSelected(AdapterView<?> arg0) {
@@ -79,7 +81,7 @@ public class Players extends Activity {
 		
 		refresh.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				provider.UpdateContent();
+				Cache.reset();
 			}
 		});
 		
@@ -105,13 +107,8 @@ public class Players extends Activity {
 					// TODO Auto-generated method stub                  
 				}
 			});
-			
-		if (!provider.leagueFileExist()) {
-			provider.UpdateContent();
-		}	
-		else {
-			bindData();
-		}
+		
+		bindData();
     }
 	
 	@Override
@@ -137,32 +134,22 @@ public class Players extends Activity {
 
 	@Override
     public boolean onContextItemSelected(MenuItem item) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+		Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
+		Global global = ((Global)getApplicationContext());
+		
 		if (item.getItemId() == R.id.leftPlayer) {
-            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-			Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
-			
-			Team selTeam = (Team) spinner.getSelectedItem();
-			ArrayList<TeamPlayer> players = provider.getTeamPlayers(selTeam.getKey(), selTeam.getFarmName());
-			
-			Global global = ((Global)getApplicationContext());
-			global.setLeftPlayer(players.get(info.position));
+            
+			global.setLeftPlayer(Cache.getPlayers().get(info.position));
 			global.setRightPlayer(null);
         }
-		if (item.getItemId() == R.id.rightPlayer) {
-            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-			Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
-
-			Team selTeam = (Team) spinner.getSelectedItem();
-			ArrayList<TeamPlayer> players = provider.getTeamPlayers(selTeam.getKey(), selTeam.getFarmName());
-
-			Global global = ((Global)getApplicationContext());
-			
+		if (item.getItemId() == R.id.rightPlayer) {         		
 			if ((global.getLeftPlayer().getPosition().equals(Goaler) &&
-				players.get(info.position).getPosition().equals(Goaler)) ||
+				Cache.getPlayers().get(info.position).getPosition().equals(Goaler)) ||
 				(!global.getLeftPlayer().getPosition().equals(Goaler) &&
-				!players.get(info.position).getPosition().equals(Goaler))) {
+				!Cache.getPlayers().get(info.position).getPosition().equals(Goaler))) {
 				
-				global.setRightPlayer(players.get(info.position));
+				global.setRightPlayer(Cache.getPlayers().get(info.position));
 
 				Intent intent = new Intent(this, ComparePlayers.class);
 				startActivity(intent);
@@ -177,11 +164,11 @@ public class Players extends Activity {
 
 	private void bindData() {
 		TextView date = (TextView)findViewById(R.id.activityplayersDate);
-		date.setText(provider.getDate());
+		date.setText(Cache.getDate());
 		Spinner teamSpinner = (Spinner)findViewById(R.id.activityplayersSpinner1);
 		ArrayAdapter<Team> dataAdapter = new ArrayAdapter<Team>(this,
 																R.layout.spinner_team_item, 
-																provider.getTeams());
+																Cache.getTeams());
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		teamSpinner.setAdapter(dataAdapter);
 		
