@@ -8,6 +8,7 @@ class Cache
 	private static ArrayList<TeamPlayer> players;
 	private static ArrayList<Team> teams;
 	static String currentProTeam;
+	static String currentProTeamSelection;
 	static String currentFarmTeam;
 	private static String updatedDate;
 	

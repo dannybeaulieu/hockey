@@ -163,7 +163,7 @@ class WebContentProvider {
 	}
 	
 	public boolean leagueFileExist() {
-		File leagueFile = _context.getFileStreamPath("league.txt");
+		File leagueFile = new File(_context.getFilesDir(), "league.txt");
 		return leagueFile.exists();
 	}
 }

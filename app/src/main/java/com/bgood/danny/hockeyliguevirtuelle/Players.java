@@ -67,6 +67,7 @@ public class Players extends Activity {
 					
 					Cache.currentProTeam = selTeam.getKey();
 					Cache.currentFarmTeam = selTeam.getFarmName();
+					Cache.currentProTeamSelection = selTeam.getName();
 					Cache.resetPlayers();
 					
 					dataAdapter = new PlayerArrayAdapter(Players.this, Cache.getPlayers());									
@@ -109,7 +110,12 @@ public class Players extends Activity {
 				}
 			});
 		
-		bindData();
+		if (Cache.provider.leagueFileExist()) {
+			bindData();
+		}
+		else {
+			Cache.provider.UpdateContent();
+		}	
     }
 	
 	@Override
@@ -136,7 +142,6 @@ public class Players extends Activity {
 	@Override
     public boolean onContextItemSelected(MenuItem item) {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-		Spinner spinner = (Spinner) findViewById(R.id.activityplayersSpinner1);
 		Global global = ((Global)getApplicationContext());
 		
 		if (item.getItemId() == R.id.leftPlayer) {
@@ -167,14 +172,20 @@ public class Players extends Activity {
 		TextView date = (TextView)findViewById(R.id.activityplayersDate);
 		date.setText(Cache.getDate());
 		Spinner teamSpinner = (Spinner)findViewById(R.id.activityplayersSpinner1);
-		ArrayAdapter<Team> dataAdapter = new ArrayAdapter<Team>(this,
+		ArrayAdapter<Team> tDataAdapter = new ArrayAdapter<Team>(this,
 																R.layout.spinner_team_item, 
 																Cache.getTeams());
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		teamSpinner.setAdapter(dataAdapter);
+		tDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		teamSpinner.setAdapter(tDataAdapter);
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		teamSpinner.setSelection(getItemPosition(dataAdapter, prefs.getString("prefDefaultTeam", "default choice")), true);
+		if (Cache.currentProTeamSelection == null)
+		{
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+			teamSpinner.setSelection(getItemPosition(tDataAdapter, prefs.getString("prefDefaultTeam", "default choice")), true);
+		}
+		else {
+			teamSpinner.setSelection(getItemPosition(tDataAdapter, Cache.currentProTeamSelection), true);
+		}
 	}
 	
 	private int getItemPosition(ArrayAdapter<Team> adapter, String name) {
