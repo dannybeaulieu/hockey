@@ -52,7 +52,7 @@
 			tools:ignore="RelativeOverlap"
 			android:src="@drawable/left_arrow"
 			android:scaleType="centerCrop"
-            android:contentDescription="@string/back" />
+			android:contentDescription="@string/back"/>
 
 		<ImageView
 			android:layout_height="50dp"
@@ -60,7 +60,7 @@
 			android:src="@drawable/hockeyplayer_white"
 			android:layout_toEndOf="@id/menuPlayerBack"
 			android:layout_centerVertical="true"
-            android:contentDescription="@string/hockeyPlayer" />
+			android:contentDescription="@string/hockeyPlayer"/>
 
 		<ImageButton
 			android:layout_height="33dp"
@@ -118,9 +118,10 @@
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:background="#FCFCFC"
-			android:layout_margin="5dp"
 			android:layout_alignParentEnd="true"
-			android:id="@+id/activityplayersPositionLayout">
+			android:id="@+id/activityplayersPositionLayout"
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="5dp">
 
 			<Spinner
 				android:layout_height="40dp"

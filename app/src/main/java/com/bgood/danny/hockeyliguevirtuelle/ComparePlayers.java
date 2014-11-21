@@ -12,6 +12,7 @@ public class ComparePlayers extends Activity
 {
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 		setContentView(R.layout.compare_players);
 		Global global = ((Global)getApplicationContext());
