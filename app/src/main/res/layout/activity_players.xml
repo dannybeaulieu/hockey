@@ -140,7 +140,8 @@
 			android:textColor="#FFFFFF"
 			android:textSize="20sp"
 			android:layout_centerVertical="true"
-			android:layout_toStartOf="@+id/activityplayersPositionLayout"/>
+			android:layout_toStartOf="@+id/activityplayersPositionLayout"
+			android:layout_marginEnd="5dp"/>
 
 	</RelativeLayout>
 
